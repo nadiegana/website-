@@ -214,7 +214,7 @@ export default function Portfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-blue/10 to-lime-green/10 dark:from-charcoal dark:to-slate-800">
+    <div className="min-h-screen bg-pure-white dark:from-dark-charcoal dark:to-medium-gray">
       {/* Success Message */}
       {success && (
         <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
@@ -224,26 +224,32 @@ export default function Portfolio() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-700">
+      <nav className="fixed top-0 w-full bg-pure-white/80 dark:bg-dark-charcoal/80 backdrop-blur-md z-50 border-b border-light-gray dark:border-medium-gray">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <Image src="/nadie-gana-logo.png" alt="NADIE GANA" width={120} height={40} className="h-8 w-auto" />
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-slate-600 dark:text-slate-300 hover:text-bright-orange transition-colors">
+              <a
+                href="#home"
+                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
+              >
                 Home
               </a>
               <a
                 href="#about"
-                className="text-slate-600 dark:text-slate-300 hover:text-bright-orange transition-colors"
+                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
               >
                 About
               </a>
-              <a href="#work" className="text-slate-600 dark:text-slate-300 hover:text-bright-orange transition-colors">
+              <a
+                href="#work"
+                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
+              >
                 Work
               </a>
               <a
                 href="#contact"
-                className="text-slate-600 dark:text-slate-300 hover:text-bright-orange transition-colors"
+                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
               >
                 Contact
               </a>
@@ -260,18 +266,18 @@ export default function Portfolio() {
               className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-sky-blue/20 dark:bg-charcoal/20 text-golden-yellow dark:text-lime-green px-4 py-2 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center space-x-2 bg-light-gray/20 dark:bg-medium-gray/20 text-primary-orange dark:text-pure-white px-4 py-2 rounded-full text-sm font-medium">
                   <Palette className="w-4 h-4" />
                   <span>Creative Explorer</span>
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-tight">
+                <h1 className="text-5xl lg:text-7xl font-bold text-dark-charcoal dark:text-pure-white leading-tight">
                   Creative
-                  <span className="block bg-gradient-to-r from-sky-blue to-lime-green bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-primary-orange to-primary-orange bg-clip-text text-transparent">
                     Design
                   </span>
                   Solutions
                 </h1>
-                <p className="text-xl text-slate-600 dark:text-slate-300 max-w-lg">
+                <p className="text-xl text-dark-charcoal dark:text-pure-white max-w-lg">
                   I craft compelling visual experiences that tell your story and connect with your audience through
                   innovative design.
                 </p>
@@ -280,7 +286,7 @@ export default function Portfolio() {
                 <Button
                   size="lg"
                   onClick={scrollToWork}
-                  className="bg-gradient-to-r from-sky-blue to-lime-green hover:from-blue-400 hover:to-green-400"
+                  className="bg-gradient-to-r from-primary-orange to-primary-orange hover:from-primary-orange hover:to-primary-orange"
                 >
                   View My Work
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -294,7 +300,7 @@ export default function Portfolio() {
               className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-sky-blue to-bright-orange rounded-3xl blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-orange to-primary-orange rounded-3xl blur-3xl opacity-30 animate-pulse"></div>
                 <Image
                   src="/hero-mountain-road.jpeg"
                   alt="Creative explorer on mountain road"
@@ -302,14 +308,14 @@ export default function Portfolio() {
                   height={600}
                   className="relative rounded-3xl shadow-2xl"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl">
+                <div className="absolute -bottom-6 -right-6 bg-pure-white dark:bg-dark-charcoal p-6 rounded-2xl shadow-xl">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-golden-yellow to-bright-orange rounded-full flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 bg-gradient-to-r from-primary-orange to-primary-orange rounded-full flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-pure-white" />
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-900 dark:text-white">Creative Process</div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">Always Innovating</div>
+                      <div className="font-semibold text-dark-charcoal dark:text-pure-white">Creative Process</div>
+                      <div className="text-sm text-medium-gray dark:text-light-gray">Always Innovating</div>
                     </div>
                   </div>
                 </div>
@@ -320,13 +326,13 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 bg-white dark:bg-slate-800">
+      <section id="about" className="py-20 px-4 bg-pure-white dark:bg-dark-charcoal">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Hi there, I'm Nicolas!</h2>
-                <p className="text-lg text-slate-600 dark:text-slate-300">
+                <h2 className="text-4xl font-bold text-dark-charcoal dark:text-pure-white">Hi there, I'm Nicolas!</h2>
+                <p className="text-lg text-medium-gray dark:text-light-gray">
                   a visual designer, storyteller, and creative collaborator. I work at the intersection of design,
                   community, and cultural transformation. My practice blends graphic design, video, participatory art,
                   and web development often with a focus on projects rooted in social impact, activism, and collective
@@ -337,33 +343,33 @@ export default function Portfolio() {
                   project — and about making the process collaborative, intentional, and human. I'm always exploring how
                   design can act not just as decoration, but as a tool for connection, resistance, and joy.
                 </p>
-                <p className="text-lg text-slate-600 dark:text-slate-300">
+                <p className="text-lg text-medium-gray dark:text-light-gray">
                   My approach combines playful aesthetics with functional design, creating work that's both visually
                   striking and purposeful. Let's create something amazing together!
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-6 bg-slate-50 dark:bg-slate-700 rounded-2xl">
-                  <Palette className="w-8 h-8 text-bright-orange mx-auto mb-3" />
-                  <div className="font-semibold text-slate-900 dark:text-white">Brand Design</div>
+                <div className="text-center p-6 bg-light-gray/20 dark:bg-medium-gray/20 rounded-2xl">
+                  <Palette className="w-8 h-8 text-primary-orange mx-auto mb-3" />
+                  <div className="font-semibold text-dark-charcoal dark:text-pure-white">Brand Design</div>
                 </div>
-                <div className="text-center p-6 bg-slate-50 dark:bg-slate-700 rounded-2xl">
-                  <Layers className="w-8 h-8 text-bright-orange mx-auto mb-3" />
-                  <div className="font-semibold text-slate-900 dark:text-white">UI/UX Design</div>
+                <div className="text-center p-6 bg-light-gray/20 dark:bg-medium-gray/20 rounded-2xl">
+                  <Layers className="w-8 h-8 text-primary-orange mx-auto mb-3" />
+                  <div className="font-semibold text-dark-charcoal dark:text-pure-white">UI/UX Design</div>
                 </div>
               </div>
             </div>
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Skills & Expertise</h3>
+              <h3 className="text-2xl font-bold text-dark-charcoal dark:text-pure-white">Skills & Expertise</h3>
               {skills.map((skill, index) => (
                 <div key={index} className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="font-medium text-slate-900 dark:text-white">{skill.name}</span>
-                    <span className="text-slate-600 dark:text-slate-400">{skill.level}%</span>
+                    <span className="font-medium text-dark-charcoal dark:text-pure-white">{skill.name}</span>
+                    <span className="text-medium-gray dark:text-light-gray">{skill.level}%</span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
+                  <div className="w-full bg-medium-gray/20 dark:bg-medium-gray rounded-full h-2">
                     <div
-                      className="bg-gradient-to-r from-golden-yellow to-bright-orange h-2 rounded-full transition-all duration-1000 ease-out"
+                      className="bg-gradient-to-r from-primary-orange to-primary-orange h-2 rounded-full transition-all duration-1000 ease-out"
                       style={{ width: `${skill.level}%` }}
                     ></div>
                   </div>
@@ -378,8 +384,8 @@ export default function Portfolio() {
       <section id="work" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Featured Work</h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-dark-charcoal dark:text-pure-white mb-4">Featured Work</h2>
+            <p className="text-xl text-medium-gray dark:text-light-gray max-w-2xl mx-auto">
               A selection of my recent projects showcasing various design disciplines and creative solutions.
             </p>
           </div>
@@ -399,7 +405,7 @@ export default function Portfolio() {
                     height={400}
                     className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-charcoal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4">
                       <Button
                         size="sm"
@@ -422,10 +428,10 @@ export default function Portfolio() {
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary">{project.category}</Badge>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-bright-orange transition-colors">
+                    <h3 className="text-xl font-bold text-dark-charcoal dark:text-pure-white group-hover:text-primary-orange transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm">{project.description}</p>
+                    <p className="text-medium-gray dark:text-light-gray text-sm">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tagIndex) => (
                         <Badge key={tagIndex} variant="outline" className="text-xs">
@@ -447,7 +453,7 @@ export default function Portfolio() {
           {selectedProject && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-slate-900 dark:text-white">
+                <DialogTitle className="text-2xl font-bold text-dark-charcoal dark:text-pure-white">
                   {selectedProject.title}
                 </DialogTitle>
               </DialogHeader>
@@ -470,7 +476,7 @@ export default function Portfolio() {
                       <Button
                         variant="secondary"
                         size="sm"
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-pure-white/80 hover:bg-pure-white"
                         onClick={prevImage}
                       >
                         <ChevronLeft className="w-4 h-4" />
@@ -478,14 +484,14 @@ export default function Portfolio() {
                       <Button
                         variant="secondary"
                         size="sm"
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-pure-white/80 hover:bg-pure-white"
                         onClick={nextImage}
                       >
                         <ChevronRight className="w-4 h-4" />
                       </Button>
 
                       {/* Image counter */}
-                      <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+                      <div className="absolute bottom-4 right-4 bg-dark-charcoal/60 text-pure-white px-3 py-1 rounded-full text-sm">
                         {currentImageIndex + 1} / {selectedProject.images.length}
                       </div>
                     </>
@@ -501,8 +507,8 @@ export default function Portfolio() {
                         onClick={() => setCurrentImageIndex(index)}
                         className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
                           currentImageIndex === index
-                            ? "border-bright-orange"
-                            : "border-transparent hover:border-slate-300"
+                            ? "border-primary-orange"
+                            : "border-transparent hover:border-medium-gray"
                         }`}
                       >
                         <Image
@@ -518,7 +524,7 @@ export default function Portfolio() {
                 )}
 
                 <div className="space-y-4">
-                  <p className="text-lg text-slate-600 dark:text-slate-300">
+                  <p className="text-lg text-medium-gray dark:text-light-gray">
                     {selectedProject.detailedDescription || selectedProject.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -536,13 +542,13 @@ export default function Portfolio() {
       </Dialog>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-white dark:bg-slate-800">
+      <section id="contact" className="py-20 px-4 bg-pure-white dark:bg-dark-charcoal">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Let's Work Together</h2>
-                <p className="text-lg text-slate-600 dark:text-slate-300">
+                <h2 className="text-4xl font-bold text-dark-charcoal dark:text-pure-white">Let's Work Together</h2>
+                <p className="text-lg text-medium-gray dark:text-light-gray">
                   Ready to bring your vision to life? I'd love to hear about your project and discuss how we can create
                   something amazing together.
                 </p>
@@ -550,32 +556,32 @@ export default function Portfolio() {
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sky-blue/20 dark:bg-charcoal/20 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-bright-orange" />
+                  <div className="w-12 h-12 bg-light-gray/20 dark:bg-medium-gray/20 rounded-full flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-primary-orange" />
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-900 dark:text-white">Email</div>
-                    <div className="text-slate-600 dark:text-slate-400">nadiegan4@gmail.com</div>
+                    <div className="font-semibold text-dark-charcoal dark:text-pure-white">Email</div>
+                    <div className="text-medium-gray dark:text-light-gray">nadiegan4@gmail.com</div>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sky-blue/20 dark:bg-charcoal/20 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-bright-orange" />
+                  <div className="w-12 h-12 bg-light-gray/20 dark:bg-medium-gray/20 rounded-full flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-primary-orange" />
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-900 dark:text-white">Phone</div>
-                    <div className="text-slate-600 dark:text-slate-400">+573165516640</div>
+                    <div className="font-semibold text-dark-charcoal dark:text-pure-white">Phone</div>
+                    <div className="text-medium-gray dark:text-light-gray">+573165516640</div>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-sky-blue/20 dark:bg-charcoal/20 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-bright-orange" />
+                  <div className="w-12 h-12 bg-light-gray/20 dark:bg-medium-gray/20 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-primary-orange" />
                   </div>
                   <div>
-                    <div className="font-semibold text-slate-900 dark:text-white">Location</div>
-                    <div className="text-slate-600 dark:text-slate-400">Bogota, Colombia</div>
+                    <div className="font-semibold text-dark-charcoal dark:text-pure-white">Location</div>
+                    <div className="text-medium-gray dark:text-light-gray">Bogota, Colombia</div>
                   </div>
                 </div>
               </div>
@@ -583,9 +589,9 @@ export default function Portfolio() {
               <div className="flex space-x-4">
                 <Link
                   href="https://www.instagram.com/nadie_gana"
-                  className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center hover:bg-sky-blue/30 dark:hover:bg-charcoal/30 transition-colors"
+                  className="w-12 h-12 bg-medium-gray/20 dark:bg-dark-charcoal/50 rounded-full flex items-center justify-center hover:bg-medium-gray/30 dark:hover:bg-dark-charcoal/70 transition-colors"
                 >
-                  <Instagram className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                  <Instagram className="w-5 h-5 text-dark-charcoal dark:text-pure-white" />
                 </Link>
               </div>
             </div>
@@ -594,25 +600,25 @@ export default function Portfolio() {
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-900 dark:text-white">First Name</label>
+                    <label className="text-sm font-medium text-dark-charcoal dark:text-pure-white">First Name</label>
                     <Input name="from_name" placeholder="John" required />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-900 dark:text-white">Last Name</label>
+                    <label className="text-sm font-medium text-dark-charcoal dark:text-pure-white">Last Name</label>
                     <Input name="from_lastname" placeholder="Doe" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-900 dark:text-white">Email</label>
+                  <label className="text-sm font-medium text-dark-charcoal dark:text-pure-white">Email</label>
                   <Input name="from_email" type="email" placeholder="john@example.com" required />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-900 dark:text-white">Project Type</label>
+                  <label className="text-sm font-medium text-dark-charcoal dark:text-pure-white">Project Type</label>
                   <select
                     name="project_type"
-                    className="w-full p-3 border border-slate-200 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-slate-900 dark:text-white"
+                    className="w-full p-3 border border-medium-gray dark:border-medium-gray rounded-md bg-pure-white dark:bg-dark-charcoal text-dark-charcoal dark:text-pure-white"
                   >
                     <option>Brand Identity</option>
                     <option>Web Design</option>
@@ -623,7 +629,7 @@ export default function Portfolio() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-900 dark:text-white">Message</label>
+                  <label className="text-sm font-medium text-dark-charcoal dark:text-pure-white">Message</label>
                   <Textarea
                     name="message"
                     placeholder="Tell me about your project..."
@@ -635,7 +641,7 @@ export default function Portfolio() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-sky-blue to-lime-green hover:from-blue-400 hover:to-green-400 disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-primary-orange to-primary-orange hover:from-primary-orange hover:to-primary-orange disabled:opacity-50"
                   size="lg"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
@@ -648,17 +654,23 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-slate-200 dark:border-slate-700">
+      <footer className="py-8 px-4 border-t border-light-gray dark:border-medium-gray">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-slate-600 dark:text-slate-400 mb-4 md:mb-0">
+            <div className="text-medium-gray dark:text-light-gray mb-4 md:mb-0">
               © 2025 Portfolio. All rights reserved.
             </div>
             <div className="flex space-x-6">
-              <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-bright-orange transition-colors">
+              <Link
+                href="#"
+                className="text-medium-gray dark:text-light-gray hover:text-primary-orange transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-slate-600 dark:text-slate-400 hover:text-bright-orange transition-colors">
+              <Link
+                href="#"
+                className="text-medium-gray dark:text-light-gray hover:text-primary-orange transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

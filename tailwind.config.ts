@@ -21,11 +21,11 @@ const config: Config = {
     extend: {
       colors: {
         // Custom color palette
-        "sky-blue": "#ACD7F2",
-        "lime-green": "#CAF272",
-        charcoal: "#242614",
-        "golden-yellow": "#F2CB05",
-        "bright-orange": "#F29F05",
+        "primary-orange": "#F26522",
+        "dark-charcoal": "#0D0D0D",
+        "medium-gray": "#494949",
+        "light-gray": "#C1C1C1",
+        "pure-white": "#FFFFFF", // Added for clarity, though FFFFFF is often default
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
