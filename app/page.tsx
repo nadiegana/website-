@@ -224,33 +224,21 @@ export default function Portfolio() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-pure-white/80 dark:bg-dark-charcoal/80 backdrop-blur-md z-50 border-b border-light-gray dark:border-medium-gray">
+      <nav className="fixed top-0 w-full z-50 border-b shadow-md" style={{ backgroundColor: "#FFFFFF" }}>
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <Image src="/nadie-gana-logo.png" alt="NADIE GANA" width={120} height={40} className="h-8 w-auto" />
             <div className="hidden md:flex space-x-8">
-              <a
-                href="#home"
-                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
-              >
+              <a href="#home" className="hover:text-primary-orange transition-colors" style={{ color: "#000000" }}>
                 Home
               </a>
-              <a
-                href="#about"
-                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
-              >
+              <a href="#about" className="hover:text-primary-orange transition-colors" style={{ color: "#000000" }}>
                 About
               </a>
-              <a
-                href="#work"
-                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
-              >
+              <a href="#work" className="hover:text-primary-orange transition-colors" style={{ color: "#000000" }}>
                 Work
               </a>
-              <a
-                href="#contact"
-                className="text-medium-gray dark:text-pure-white hover:text-primary-orange transition-colors"
-              >
+              <a href="#contact" className="hover:text-primary-orange transition-colors" style={{ color: "#000000" }}>
                 Contact
               </a>
             </div>
