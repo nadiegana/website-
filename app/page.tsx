@@ -266,18 +266,21 @@ export default function Portfolio() {
               className={`space-y-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-light-gray/20 dark:bg-medium-gray/20 text-primary-orange dark:text-pure-white px-4 py-2 rounded-full text-sm font-medium">
+                <div
+                  className="inline-flex items-center space-x-2 bg-light-gray/20 dark:bg-medium-gray/20 px-4 py-2 rounded-full text-sm font-medium"
+                  style={{ color: "#000000" }}
+                >
                   <Palette className="w-4 h-4" />
                   <span>Creative Explorer</span>
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-bold text-dark-charcoal dark:text-pure-white leading-tight">
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight" style={{ color: "#000000" }}>
                   Creative
                   <span className="block bg-gradient-to-r from-primary-orange to-primary-orange bg-clip-text text-transparent">
                     Design
                   </span>
                   Solutions
                 </h1>
-                <p className="text-xl text-dark-charcoal dark:text-pure-white max-w-lg">
+                <p className="text-xl max-w-lg" style={{ color: "#000000" }}>
                   I craft compelling visual experiences that tell your story and connect with your audience through
                   innovative design.
                 </p>
