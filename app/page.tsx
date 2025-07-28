@@ -1,5 +1,5 @@
 "use client"
-import { Analytics } from "@vercel/analytics/next"
+
 import type React from "react"
 
 import { useState, useEffect } from "react"
@@ -15,7 +15,6 @@ import {
   MapPin,
   Instagram,
   ArrowRight,
-  Download,
   ExternalLink,
   Palette,
   Layers,
@@ -40,6 +39,8 @@ export default function Portfolio() {
 
   useEffect(() => {
     setIsVisible(true)
+    // Set page title
+    document.title = "Nicolas Saenz Design"
   }, [])
 
   const projects = [
@@ -145,6 +146,20 @@ export default function Portfolio() {
     }
   }
 
+  const scrollToWork = () => {
+    const workSection = document.getElementById("work")
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact")
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   const nextImage = () => {
     if (selectedProject && selectedProject.images) {
       setCurrentImageIndex((prev) => (prev + 1) % selectedProject.images.length)
@@ -233,10 +248,6 @@ export default function Portfolio() {
                 Contact
               </a>
             </div>
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Resume
-            </Button>
           </div>
         </div>
       </nav>
@@ -268,12 +279,13 @@ export default function Portfolio() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
+                  onClick={scrollToWork}
                   className="bg-gradient-to-r from-sky-blue to-lime-green hover:from-blue-400 hover:to-green-400"
                 >
                   View My Work
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" onClick={scrollToContact}>
                   Get In Touch
                 </Button>
               </div>
@@ -315,11 +327,15 @@ export default function Portfolio() {
               <div className="space-y-4">
                 <h2 className="text-4xl font-bold text-slate-900 dark:text-white">Hi there, I'm Nicolas!</h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300">
-                 a visual designer, storyteller, and creative collaborator.
-I work at the intersection of design, community, and cultural transformation. My practice blends graphic design, video, participatory art, and web development often with a focus on projects rooted in social impact, activism, and collective imagination.
-Over the past few years, I’ve collaborated with artists, grassroots organizations, and creative teams in Colombia, the U.S., and beyond — designing visual identities, animated pieces, printed matter, and multimedia narratives that aim to move people and spark dialogue.
-Whether I’m designing a poster, editing a short film, or building a website, I care about the story behind each project — and about making the process collaborative, intentional, and human.
-I'm always exploring how design can act not just as decoration, but as a tool for connection, resistance, and joy.
+                  a visual designer, storyteller, and creative collaborator. I work at the intersection of design,
+                  community, and cultural transformation. My practice blends graphic design, video, participatory art,
+                  and web development often with a focus on projects rooted in social impact, activism, and collective
+                  imagination. Over the past few years, I've collaborated with artists, grassroots organizations, and
+                  creative teams in Colombia, the U.S., and beyond — designing visual identities, animated pieces,
+                  printed matter, and multimedia narratives that aim to move people and spark dialogue. Whether I'm
+                  designing a poster, editing a short film, or building a website, I care about the story behind each
+                  project — and about making the process collaborative, intentional, and human. I'm always exploring how
+                  design can act not just as decoration, but as a tool for connection, resistance, and joy.
                 </p>
                 <p className="text-lg text-slate-600 dark:text-slate-300">
                   My approach combines playful aesthetics with functional design, creating work that's both visually
