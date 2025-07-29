@@ -117,15 +117,98 @@ export default function Portfolio() {
   ]
 
   const photographyProjects = [
-    { id: 1, image: "/photo1.jpeg" },
-    { id: 2, image: "/photo2.jpeg" },
-    { id: 3, image: "/photo3.jpeg" },
-    { id: 4, image: "/photo4.jpeg" },
-    { id: 5, image: "/photo1.jpeg" },
-    { id: 6, image: "/photo2.jpeg" },
-    { id: 7, image: "/photo3.jpeg" },
-    { id: 8, image: "/photo4.jpeg" },
-    { id: 9, image: "/photo1.jpeg" },
+    {
+      id: 1,
+      image: "/mountain-lake-sunset.jpeg",
+      title: "Mountain Lake Sunset",
+      description:
+        "Aerial view of a winding lake system during golden hour, capturing the warm reflections and layered mountain silhouettes.",
+      tags: ["Landscape", "Aerial", "Golden Hour", "Nature"],
+    },
+    {
+      id: 2,
+      image: "/colonial-church-aerial.jpeg",
+      title: "Colonial Church",
+      description:
+        "Historic white colonial church with dome architecture nestled in a colorful Latin American hillside town.",
+      tags: ["Architecture", "Cultural", "Aerial", "Heritage"],
+    },
+    {
+      id: 3,
+      image: "/coastal-fortress-aerial.jpeg",
+      title: "Coastal Fortress",
+      description:
+        "Geometric concrete fortification structures creating striking patterns against white sand and coastal landscape.",
+      tags: ["Architecture", "Geometric", "Coastal", "Historical"],
+    },
+    {
+      id: 4,
+      image: "/bogota-cityscape.jpeg",
+      title: "Bogotá Skyline",
+      description:
+        "Modern urban landscape of Colombia's capital city with high-rise buildings set against the Andean mountains.",
+      tags: ["Urban", "Cityscape", "Modern", "Colombia"],
+    },
+    {
+      id: 5,
+      image: "/ocean-surfer-aerial.jpeg",
+      title: "Ocean Surfer",
+      description:
+        "Lone surfer navigating choppy waters during golden hour, emphasizing the scale and beauty of the ocean.",
+      tags: ["Action", "Ocean", "Surfing", "Adventure"],
+    },
+    {
+      id: 6,
+      image: "/rock-climbing-aerial.jpeg",
+      title: "Rock Climbing",
+      description:
+        "Aerial perspective of climbers on a vertical rock face, showcasing the thrill and technical aspects of the sport.",
+      tags: ["Adventure", "Climbing", "Extreme Sports", "Vertical"],
+    },
+    {
+      id: 7,
+      image: "/aerial-forest-road.jpeg",
+      title: "Forest Road",
+      description:
+        "Two vehicles navigating a dirt road through dense woodland, capturing the essence of wilderness exploration.",
+      tags: ["Adventure", "Forest", "Exploration", "Vehicles"],
+    },
+    {
+      id: 8,
+      image: "/photo1.jpeg",
+      title: "Adventure Portrait",
+      description: "Dynamic outdoor portrait capturing the spirit of adventure and exploration in natural settings.",
+      tags: ["Portrait", "Adventure", "Outdoor", "Lifestyle"],
+    },
+    {
+      id: 9,
+      image: "/photo2.jpeg",
+      title: "Nature Scene",
+      description: "Serene natural landscape showcasing the beauty and tranquility of untouched wilderness areas.",
+      tags: ["Nature", "Landscape", "Serene", "Wilderness"],
+    },
+    {
+      id: 10,
+      image: "/photo3.jpeg",
+      title: "Outdoor Adventure",
+      description:
+        "Action-packed outdoor adventure scene highlighting the excitement of exploring natural environments.",
+      tags: ["Adventure", "Action", "Outdoor", "Exploration"],
+    },
+    {
+      id: 11,
+      image: "/photo4.jpeg",
+      title: "Landscape Vista",
+      description: "Breathtaking landscape vista showcasing dramatic natural formations and expansive views.",
+      tags: ["Landscape", "Vista", "Dramatic", "Natural"],
+    },
+    {
+      id: 12,
+      image: "/hero-mountain-road.jpeg",
+      title: "Mountain Road",
+      description: "Winding mountain road through dramatic terrain, symbolizing the journey of creative exploration.",
+      tags: ["Mountain", "Road", "Journey", "Dramatic"],
+    },
   ]
 
   const skills = [
@@ -504,25 +587,51 @@ export default function Portfolio() {
                   ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {photographyProjects.map((photo, index) => (
                     <motion.div
-                      key={photo.id + "-" + index}
-                      className="group relative aspect-square overflow-hidden cursor-pointer"
+                      key={photo.id}
+                      className="group relative aspect-square overflow-hidden cursor-pointer rounded-lg"
                       onClick={() => handlePhotoClick(photo)}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.05 }}
+                      whileHover={{ scale: 1.02 }}
                     >
                       <Image
                         src={photo.image || "/placeholder.svg"}
-                        alt={`Photography ${photo.id}`}
+                        alt={photo.title}
                         fill
-                        sizes="(max-width: 768px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                         onError={handleImageError}
                       />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
+                        <motion.div
+                          initial={{ y: 20, opacity: 0 }}
+                          whileHover={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-white"
+                        >
+                          <h3 className="font-bold text-lg mb-2">{photo.title}</h3>
+                          <p className="text-sm text-gray-200 mb-3 line-clamp-2">{photo.description}</p>
+                          <div className="flex flex-wrap gap-1">
+                            {photo.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </div>
+
+                      {/* Corner indicator */}
+                      <div className="absolute top-3 right-3 w-2 h-2 bg-white/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                   ))}
                 </div>
