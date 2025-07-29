@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu } from "lucide-react" // Added Video icon
+import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -323,6 +323,7 @@ export default function Portfolio() {
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
+            {/* Ensure src is always a public path */}
             <Image
               src="/nadie-gana-logo-white.png"
               alt="NADIE GANA Logo"

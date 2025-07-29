@@ -7,6 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Ensure href is always a public path */}
         <link rel="icon" href="/nadie-gana-logo-white.png" />
       </head>
       <body className="font-sans">
