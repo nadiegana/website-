@@ -603,7 +603,7 @@ export default function Portfolio() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  Videos
+                  Video
                 </span>
               </button>
             </div>
