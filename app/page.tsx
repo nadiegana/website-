@@ -120,7 +120,7 @@ export default function Portfolio() {
       title: "Calligraphy & Lettering",
       category: "Typography",
       description:
-        "Hand-lettered design series for 'Cumbia Chicansombiana' featuring vibrant gradient typography with multiple color variations.",
+        "Hand-lettered design series for 'Cumbia Chicanombiana' featuring vibrant gradient typography with multiple color variations.",
       image: "/cumbia-lettering-cyan.png",
       images: [
         "/cumbia-lettering-cyan.png",
@@ -251,33 +251,33 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      title: "Motion Graphics & Visual Effects",
+      title: "RenovaTrax 2020",
       description:
-        "A showcase of dynamic motion graphics and visual effects work, demonstrating creative animation techniques.",
+        "En el corazón de Bogotá, la calle se convirtió en un escenario de arte, música y deporte. Esta manifestación pacífica, organizada de forma autogestionada y con el apoyo de diversos colectivos sociales, transformó el espacio público en un laboratorio vivo de experimentación artística y expresión colectiva. Una jornada para encontrarnos, resistir y crear juntxs. 💥🎶🛹🎨",
       embedUrl: "https://www.youtube.com/embed/3cZvImm6Fgw",
       tags: ["Motion Graphics", "Visual Effects", "Animation", "Creative", "Digital Art"],
     },
     {
       id: 4,
-      title: "MENTAL HYGIENE - Resonar Lab",
+      title: "Higiene Mental - Resonar Lab",
       description: "Distance co-production that reflects on the negative impact of social networks and media.",
       embedUrl: "https://www.youtube.com/embed/8yJCPB92W1I",
       tags: ["Music Video", "Experimental", "Social Commentary", "Resonar Lab"],
     },
     {
       id: 5,
-      title: "Abstract Visuals & Soundscapes",
+      title: "Barrio Obrero - Resonar Lab",
       description: "An immersive journey through abstract visuals synchronized with unique soundscapes.",
       embedUrl: "https://www.youtube.com/embed/lzYrsDsCXrc",
       tags: ["Abstract", "Visuals", "Soundscapes", "Experimental"],
     },
     {
       id: 6,
-      title: "Dynamic Motion Design Showcase",
+      title: "Cumbia Chicanombiana - Resonar Lab",
       description:
-        "A compilation of dynamic motion design pieces, highlighting various animation techniques and creative concepts.",
+        "Activist musical journey through Colorado, USA, where we explore the combination of participatory art and music in the service of environmental justice. La Cumbia Chicanombiana highlights the struggle of diverse communities and activists against social injustice and environmental damage caused by the fracking and oil industries. This co-production is inspired by interviews and workshops we conducted throughout the state, supported by local initiatives fighting against the destruction of their homelands and the serious deterioration of their health. .",
       embedUrl: "https://www.youtube.com/embed/GrnuJulYmz0",
-      tags: ["Motion Design", "Animation", "Showcase", "Creative"],
+      tags: ["Activist", "Musical", "Showcase", "Creative"],
     },
   ]
 
@@ -285,7 +285,7 @@ export default function Portfolio() {
     { name: "Adobe Creative Suite", level: 95 },
     { name: "Canva & Adobe Express", level: 90 },
     { name: "Brand Identity", level: 88 },
-    { name: "UI/UX Design", level: 85 },
+    { name: "Video Editing", level: 85 },
     { name: "Typography", level: 92 },
     { name: "Print Design", level: 87 },
     { name: "Languages (Spanish)", level: 100 },
