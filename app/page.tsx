@@ -13,6 +13,8 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { MotionWrapper } from "@/components/motion-wrapper"
 import { ThemeToggleButton } from "@/components/theme-toggle-button"
+import { submitContactForm } from "@/app/contact-action" // Import the server action
+import { useActionState } from "react" // Import useActionState
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("graphic-design")
@@ -20,9 +22,11 @@ export default function Portfolio() {
   const [selectedPhoto, setSelectedPhoto] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showSuccess, setShowSuccess] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [headerScrolled, setHeaderScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Use useActionState for form submission
+  const [state, formAction, isPending] = useActionState(submitContactForm, null)
 
   useEffect(() => {
     document.title = "Nicolas Saenz Design"
@@ -39,6 +43,17 @@ export default function Portfolio() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Handle success/error state from Server Action
+  useEffect(() => {
+    if (state?.success) {
+      setShowSuccess(true)
+      setTimeout(() => setShowSuccess(false), 5000)
+    } else if (state?.error) {
+      // You might want to show an error toast or message here
+      console.error("Form submission error:", state.error)
+    }
+  }, [state])
 
   const projects = [
     {
@@ -786,32 +801,64 @@ export default function Portfolio() {
             </MotionWrapper>
             <MotionWrapper>
               <Card className="p-8 shadow-xl bg-muted/50 border-0">
-                <form className="space-y-6">
+                <form action={formAction} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">First Name</label>
-                      <Input name="firstName" placeholder="John" required />
+                      <label htmlFor="firstName" className="text-sm font-medium">
+                        First Name
+                      </label>
+                      <Input id="firstName" name="firstName" placeholder="John" required />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Last Name</label>
-                      <Input name="lastName" placeholder="Doe" required />
+                      <label htmlFor="lastName" className="text-sm font-medium">
+                        Last Name
+                      </label>
+                      <Input id="lastName" name="lastName" placeholder="Doe" required />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Email</label>
-                    <Input name="email" type="email" placeholder="john@example.com" required />
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email
+                    </label>
+                    <Input id="email" name="email" type="email" placeholder="john@example.com" required />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Message</label>
-                    <Textarea name="message" placeholder="Tell me about your project..." required />
+                    <label htmlFor="projectType" className="text-sm font-medium">
+                      Project Type
+                    </label>
+                    <select
+                      id="projectType"
+                      name="projectType"
+                      className="mt-1 block w-full px-3 py-2 border border-input bg-background rounded-md shadow-sm focus:outline-none focus:ring-primary-orange focus:border-primary-orange sm:text-sm"
+                      defaultValue=""
+                      required
+                    >
+                      <option value="" disabled>
+                        Select a project type
+                      </option>
+                      <option value="Brand Identity">Brand Identity</option>
+                      <option value="Publication Design">Publication Design</option>
+                      <option value="Print Design">Print Design</option>
+                      <option value="Web Design">Web Design</option>
+                      <option value="Typography">Typography</option>
+                      <option value="Photography">Photography</option>
+                      <option value="Video Production">Video Production</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
+                      Message
+                    </label>
+                    <Textarea id="message" name="message" placeholder="Tell me about your project..." required />
                   </div>
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isPending}
                     className="w-full bg-primary-orange hover:bg-orange-600 text-white"
                     size="lg"
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isPending ? "Sending..." : "Send Message"}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </form>
