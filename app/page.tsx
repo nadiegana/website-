@@ -1,20 +1,19 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useActionState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu } from "lucide-react"
+import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu, PlayCircle } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { MotionWrapper } from "@/components/motion-wrapper"
 import { ThemeToggleButton } from "@/components/theme-toggle-button"
 import { submitContactForm } from "@/app/contact-action" // Import the server action
-import { useActionState } from "react" // Import useActionState
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("graphic-design")
@@ -24,19 +23,11 @@ export default function Portfolio() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [headerScrolled, setHeaderScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [selectedVideo, setSelectedVideo] = useState(null)
 
-  // Use useActionState for form submission
   const [state, formAction, isPending] = useActionState(submitContactForm, null)
 
   useEffect(() => {
-    document.title = "Nicolas Saenz Design"
-
-    const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.get("success") === "true") {
-      setShowSuccess(true)
-      setTimeout(() => setShowSuccess(false), 5000)
-    }
-
     const handleScroll = () => {
       setHeaderScrolled(window.scrollY > 20)
     }
@@ -50,7 +41,6 @@ export default function Portfolio() {
       setShowSuccess(true)
       setTimeout(() => setShowSuccess(false), 5000)
     } else if (state?.error) {
-      // You might want to show an error toast or message here
       console.error("Form submission error:", state.error)
     }
   }, [state])
@@ -219,10 +209,11 @@ export default function Portfolio() {
     },
     {
       id: 12,
-      image: "/hero-mountain-road.jpeg",
-      title: "Mountain Road",
-      description: "Winding mountain road through dramatic terrain, symbolizing the journey of creative exploration.",
-      tags: ["Mountain", "Road", "Journey", "Dramatic"],
+      image: "/aerial-surfing-photo.jpeg",
+      title: "Aerial Surfing",
+      description:
+        "An aerial shot of a surfer catching a wave in crystal clear water, showcasing the power and beauty of the ocean.",
+      tags: ["Surfing", "Aerial", "Ocean", "Action"],
     },
   ]
 
@@ -313,6 +304,13 @@ export default function Portfolio() {
 
   const handleImageError = (e) => (e.target.src = "/placeholder.svg?height=400&width=400&text=Error")
 
+  const getYouTubeVideoId = (url: string | null) => {
+    if (!url) return null
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return match && match[2].length === 11 ? match[2] : null
+  }
+
   return (
     <>
       {/* Success Message */}
@@ -361,7 +359,7 @@ export default function Portfolio() {
             </div>
             {/* Mobile Menu Button */}
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(true)}>
+              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(true)} aria-label="Open menu">
                 <Menu className="h-6 w-6" />
               </Button>
             </div>
@@ -640,6 +638,11 @@ export default function Portfolio() {
                       <Card
                         className="group cursor-pointer overflow-hidden h-full flex flex-col"
                         onClick={() => handleProjectClick(project)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") handleProjectClick(project)
+                        }}
+                        role="button"
+                        tabIndex={0}
                       >
                         <div className="relative overflow-hidden">
                           <Image
@@ -678,6 +681,11 @@ export default function Portfolio() {
                       key={photo.id}
                       className="group relative aspect-square overflow-hidden cursor-pointer rounded-lg"
                       onClick={() => handlePhotoClick(photo)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") handlePhotoClick(photo)
+                      }}
+                      role="button"
+                      tabIndex={0}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.05 }}
@@ -721,48 +729,60 @@ export default function Portfolio() {
                   ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {videoProjects.map((video) => (
-                    <motion.div
-                      key={video.id}
-                      className="group relative aspect-video overflow-hidden rounded-lg shadow-lg"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: video.id * 0.05 }}
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <iframe
-                        src={video.embedUrl}
-                        title={video.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      {/* Overlay for title/description/tags on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
-                        <motion.div
-                          initial={{ y: 20, opacity: 0 }}
-                          whileHover={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.1 }}
-                          className="text-white"
-                        >
-                          <h3 className="font-bold text-lg mb-2">{video.title}</h3>
-                          <p className="text-sm text-gray-200 mb-3 line-clamp-2">{video.description}</p>
-                          <div className="flex flex-wrap gap-1">
-                            {video.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30"
-                              >
-                                {tag}
-                              </span>
-                            ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {videoProjects.map((video) => {
+                    const videoId = getYouTubeVideoId(video.embedUrl)
+                    return (
+                      <motion.div
+                        key={video.id}
+                        className="group relative aspect-video overflow-hidden cursor-pointer rounded-lg shadow-lg"
+                        onClick={() => setSelectedVideo(video)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") setSelectedVideo(video)
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: video.id * 0.05 }}
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        {videoId ? (
+                          <Image
+                            src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                            alt={video.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.onerror = null // prevent infinite loop
+                              // Try sddefault.jpg first, then hqdefault.jpg
+                              if (target.src.includes("maxresdefault.jpg")) {
+                                target.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
+                              } else if (target.src.includes("sddefault.jpg")) {
+                                target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+                              } else {
+                                target.src = "/placeholder.svg?height=400&width=400&text=Video+Error"
+                              }
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-muted flex items-center justify-center">
+                            <p className="text-muted-foreground">No preview</p>
                           </div>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  ))}
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+                          <PlayCircle className="w-16 h-16 text-white/80 mb-4 transition-transform duration-300 group-hover:scale-110" />
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="font-bold text-lg text-white drop-shadow-md transition-all duration-300 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                              {video.title}
+                            </h3>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               )}
             </motion.div>
@@ -861,6 +881,7 @@ export default function Portfolio() {
                     {isPending ? "Sending..." : "Send Message"}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
+                  {state?.error && <p className="text-sm text-red-500 mt-2">{state.error}</p>}
                 </form>
               </Card>
             </MotionWrapper>
@@ -873,10 +894,10 @@ export default function Portfolio() {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p className="mb-4 md:mb-0">© 2025 Nicolas Saenz. All rights reserved.</p>
           <div className="flex items-center space-x-6">
-            <Link href="#" className="hover:text-primary-orange transition-colors">
+            <Link href="/privacy-policy" className="hover:text-primary-orange transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-primary-orange transition-colors">
+            <Link href="/terms-of-service" className="hover:text-primary-orange transition-colors">
               Terms of Service
             </Link>
             <Link
@@ -919,6 +940,24 @@ export default function Portfolio() {
               <X className="w-6 h-6 text-white" />
             </motion.button>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {selectedVideo && (
+          <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+            <DialogContent className="max-w-4xl w-full p-0 bg-transparent border-0">
+              <div className="aspect-video">
+                <iframe
+                  src={`${selectedVideo.embedUrl}?autoplay=1`}
+                  title={selectedVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full rounded-lg"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
         )}
       </AnimatePresence>
 

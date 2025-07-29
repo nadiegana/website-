@@ -1,8 +1,6 @@
 "use server"
 
-import { redirect } from "next/navigation"
-
-export async function submitContactForm(prevState: any, formData: FormData) {
+export async function submitContactForm(formData: FormData) {
   const firstName = formData.get("firstName") as string
   const lastName = formData.get("lastName") as string
   const email = formData.get("email") as string
@@ -59,15 +57,15 @@ export async function submitContactForm(prevState: any, formData: FormData) {
 
       if (response.ok) {
         console.log("Email sent successfully via server-side fetch!")
-        redirect("/?success=true") // Redirect on success
+        return { success: true } // Return success object
       } else {
-        const errorText = await response.text() // Get raw error text for more detail
+        const errorText = await response.text()
         console.error(`Failed to send email via server-side fetch: Status ${response.status}, Response: ${errorText}`)
-        return { success: false, error: `Failed to send message: ${errorText}` }
+        return { success: false, error: `Failed to send message. Please try again.` }
       }
     } catch (error: any) {
       console.error("Error sending email via server-side fetch:", error.message || error)
-      return { success: false, error: `An unexpected error occurred: ${error.message || "Unknown error"}` }
+      return { success: false, error: `An unexpected error occurred. Please try again.` }
     }
   }
 }
