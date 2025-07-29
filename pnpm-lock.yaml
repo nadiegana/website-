@@ -9,22 +9,19 @@ importers:
   .:
     dependencies:
       '@emailjs/browser':
-        specifier: latest
+        specifier: ^4.4.1
         version: 4.4.1
+      '@emotion/is-prop-valid':
+        specifier: latest
+        version: 1.3.1
       '@radix-ui/react-dialog':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.0.0)(react@18.0.0)
-      '@remix-run/react':
-        specifier: latest
-        version: 2.17.0(react-dom@18.0.0(react@18.0.0))(react@18.0.0)(typescript@5.0.2)
-      '@sveltejs/kit':
-        specifier: latest
-        version: 2.26.1(@sveltejs/vite-plugin-svelte@6.1.0(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)))(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0))
       '@vercel/analytics':
-        specifier: latest
+        specifier: ^1.3.1
         version: 1.5.0(@remix-run/react@2.17.0(react-dom@18.0.0(react@18.0.0))(react@18.0.0)(typescript@5.0.2))(@sveltejs/kit@2.26.1(@sveltejs/vite-plugin-svelte@6.1.0(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)))(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)))(next@14.2.16(react-dom@18.0.0(react@18.0.0))(react@18.0.0))(react@18.0.0)(svelte@5.37.1)(vue-router@4.5.1(vue@3.5.18(typescript@5.0.2)))(vue@3.5.18(typescript@5.0.2))
       class-variance-authority:
         specifier: ^0.7.1
@@ -32,6 +29,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      framer-motion:
+        specifier: latest
+        version: 12.23.11(@emotion/is-prop-valid@1.3.1)(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       lucide-react:
         specifier: ^0.454.0
         version: 0.454.0(react@18.0.0)
@@ -39,29 +39,20 @@ importers:
         specifier: 14.2.16
         version: 14.2.16(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       next-themes:
-        specifier: ^0.2.1
-        version: 0.2.1(next@14.2.16(react-dom@18.0.0(react@18.0.0))(react@18.0.0))(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
+        specifier: latest
+        version: 0.4.6(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       react:
         specifier: ^18
         version: 18.0.0
       react-dom:
         specifier: ^18
         version: 18.0.0(react@18.0.0)
-      svelte:
-        specifier: latest
-        version: 5.37.1
       tailwind-merge:
         specifier: ^2.5.5
         version: 2.5.5
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
-      vue:
-        specifier: latest
-        version: 3.5.18(typescript@5.0.2)
-      vue-router:
-        specifier: latest
-        version: 4.5.1(vue@3.5.18(typescript@5.0.2))
     devDependencies:
       '@types/node':
         specifier: ^22
@@ -112,6 +103,12 @@ packages:
   '@emailjs/browser@4.4.1':
     resolution: {integrity: sha512-DGSlP9sPvyFba3to2A50kDtZ+pXVp/0rhmqs2LmbMS3I5J8FSOgLwzY2Xb4qfKlOVHh29EAutLYwe5yuEZmEFg==}
     engines: {node: '>=14.0.0'}
+
+  '@emotion/is-prop-valid@1.3.1':
+    resolution: {integrity: sha512-/ACwoqx7XQi9knQs/G0qKvv5teDMhD7bXYns9N/wM8ah8iNb8jZ2uNO0YOgiq2o2poIvVtJS2YALasQuMSQ7Kw==}
+
+  '@emotion/memoize@0.9.0':
+    resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
 
   '@esbuild/aix-ppc64@0.25.8':
     resolution: {integrity: sha512-urAvrUedIqEiFR3FYSLTWQgLu5tb+m0qZw0NBEasUeo6wuqatkMDaRT+1uABiGXEu5vqgPd7FGE1BhsAIy9QVA==}
@@ -953,6 +950,20 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
+  framer-motion@12.23.11:
+    resolution: {integrity: sha512-VzNi+exyI3bn7Pzvz1Fjap1VO9gQu8mxrsSsNamMidsZ8AA8W2kQsR+YQOciEUbMtkKAWIbPHPttfn5e9jqqJQ==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -1069,6 +1080,12 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  motion-dom@12.23.9:
+    resolution: {integrity: sha512-6Sv++iWS8XMFCgU1qwKj9l4xuC47Hp4+2jvPfyTXkqDg2tTzSgX6nWKD4kNFXk0k7llO59LZTPuJigza4A2K1A==}
+
+  motion-utils@12.23.6:
+    resolution: {integrity: sha512-eAWoPgr4eFEOFfg2WjIsMoqJTW6Z8MTUCgn/GZ3VRpClWBdnbjryiA3ZSNLyxCTmCQx4RmYX6jX1iWHbenUPNQ==}
+
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -1088,12 +1105,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  next-themes@0.2.1:
-    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+  next-themes@0.4.6:
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
     peerDependencies:
-      next: '*'
-      react: '*'
-      react-dom: '*'
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
 
   next@14.2.16:
     resolution: {integrity: sha512-LcO7WnFu6lYSvCzZoo1dB+IO0xXz5uEv52HF1IUN0IqVTUIZGHuuR10I5efiLadGt+4oZqTcNZyVVEem/TM5nA==}
@@ -1528,21 +1544,32 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.12
       '@jridgewell/trace-mapping': 0.3.29
+    optional: true
 
-  '@babel/helper-string-parser@7.27.1': {}
+  '@babel/helper-string-parser@7.27.1':
+    optional: true
 
-  '@babel/helper-validator-identifier@7.27.1': {}
+  '@babel/helper-validator-identifier@7.27.1':
+    optional: true
 
   '@babel/parser@7.28.0':
     dependencies:
       '@babel/types': 7.28.2
+    optional: true
 
   '@babel/types@7.28.2':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+    optional: true
 
   '@emailjs/browser@4.4.1': {}
+
+  '@emotion/is-prop-valid@1.3.1':
+    dependencies:
+      '@emotion/memoize': 0.9.0
+
+  '@emotion/memoize@0.9.0': {}
 
   '@esbuild/aix-ppc64@0.25.8':
     optional: true
@@ -1689,7 +1716,8 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@polka/url@1.0.0-next.29': {}
+  '@polka/url@1.0.0-next.29':
+    optional: true
 
   '@radix-ui/primitive@1.1.0': {}
 
@@ -1837,8 +1865,10 @@ snapshots:
       turbo-stream: 2.4.1
     optionalDependencies:
       typescript: 5.0.2
+    optional: true
 
-  '@remix-run/router@1.23.0': {}
+  '@remix-run/router@1.23.0':
+    optional: true
 
   '@remix-run/server-runtime@2.17.0(typescript@5.0.2)':
     dependencies:
@@ -1851,6 +1881,7 @@ snapshots:
       turbo-stream: 2.4.1
     optionalDependencies:
       typescript: 5.0.2
+    optional: true
 
   '@rollup/rollup-android-arm-eabi@4.46.1':
     optional: true
@@ -1915,6 +1946,7 @@ snapshots:
   '@sveltejs/acorn-typescript@1.0.5(acorn@8.15.0)':
     dependencies:
       acorn: 8.15.0
+    optional: true
 
   '@sveltejs/kit@2.26.1(@sveltejs/vite-plugin-svelte@6.1.0(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)))(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0))':
     dependencies:
@@ -1933,6 +1965,7 @@ snapshots:
       sirv: 3.0.1
       svelte: 5.37.1
       vite: 7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)
+    optional: true
 
   '@sveltejs/vite-plugin-svelte-inspector@5.0.0(@sveltejs/vite-plugin-svelte@6.1.0(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)))(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0))':
     dependencies:
@@ -1942,6 +1975,7 @@ snapshots:
       vite: 7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@sveltejs/vite-plugin-svelte@6.1.0(svelte@5.37.1)(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0))':
     dependencies:
@@ -1955,6 +1989,7 @@ snapshots:
       vitefu: 1.1.1(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0))
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@swc/counter@0.1.3': {}
 
@@ -1963,9 +1998,11 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.8.1
 
-  '@types/cookie@0.6.0': {}
+  '@types/cookie@0.6.0':
+    optional: true
 
-  '@types/estree@1.0.8': {}
+  '@types/estree@1.0.8':
+    optional: true
 
   '@types/node@22.0.0':
     dependencies:
@@ -2002,11 +2039,13 @@ snapshots:
       entities: 4.5.0
       estree-walker: 2.0.2
       source-map-js: 1.2.1
+    optional: true
 
   '@vue/compiler-dom@3.5.18':
     dependencies:
       '@vue/compiler-core': 3.5.18
       '@vue/shared': 3.5.18
+    optional: true
 
   '@vue/compiler-sfc@3.5.18':
     dependencies:
@@ -2019,22 +2058,27 @@ snapshots:
       magic-string: 0.30.17
       postcss: 8.5.6
       source-map-js: 1.2.1
+    optional: true
 
   '@vue/compiler-ssr@3.5.18':
     dependencies:
       '@vue/compiler-dom': 3.5.18
       '@vue/shared': 3.5.18
+    optional: true
 
-  '@vue/devtools-api@6.6.4': {}
+  '@vue/devtools-api@6.6.4':
+    optional: true
 
   '@vue/reactivity@3.5.18':
     dependencies:
       '@vue/shared': 3.5.18
+    optional: true
 
   '@vue/runtime-core@3.5.18':
     dependencies:
       '@vue/reactivity': 3.5.18
       '@vue/shared': 3.5.18
+    optional: true
 
   '@vue/runtime-dom@3.5.18':
     dependencies:
@@ -2042,18 +2086,23 @@ snapshots:
       '@vue/runtime-core': 3.5.18
       '@vue/shared': 3.5.18
       csstype: 3.1.3
+    optional: true
 
   '@vue/server-renderer@3.5.18(vue@3.5.18(typescript@5.0.2))':
     dependencies:
       '@vue/compiler-ssr': 3.5.18
       '@vue/shared': 3.5.18
       vue: 3.5.18(typescript@5.0.2)
+    optional: true
 
-  '@vue/shared@3.5.18': {}
+  '@vue/shared@3.5.18':
+    optional: true
 
-  '@web3-storage/multipart-parser@1.0.0': {}
+  '@web3-storage/multipart-parser@1.0.0':
+    optional: true
 
-  acorn@8.15.0: {}
+  acorn@8.15.0:
+    optional: true
 
   ansi-regex@5.0.1: {}
 
@@ -2078,9 +2127,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  aria-query@5.3.2: {}
+  aria-query@5.3.2:
+    optional: true
 
-  axobject-query@4.1.0: {}
+  axobject-query@4.1.0:
+    optional: true
 
   balanced-match@1.0.2: {}
 
@@ -2130,9 +2181,11 @@ snapshots:
 
   commander@4.1.1: {}
 
-  cookie@0.6.0: {}
+  cookie@0.6.0:
+    optional: true
 
-  cookie@0.7.2: {}
+  cookie@0.7.2:
+    optional: true
 
   cross-spawn@7.0.6:
     dependencies:
@@ -2147,12 +2200,15 @@ snapshots:
   debug@4.4.1:
     dependencies:
       ms: 2.1.3
+    optional: true
 
-  deepmerge@4.3.1: {}
+  deepmerge@4.3.1:
+    optional: true
 
   detect-node-es@1.1.0: {}
 
-  devalue@5.1.1: {}
+  devalue@5.1.1:
+    optional: true
 
   didyoumean@1.2.2: {}
 
@@ -2164,7 +2220,8 @@ snapshots:
 
   emoji-regex@9.2.2: {}
 
-  entities@4.5.0: {}
+  entities@4.5.0:
+    optional: true
 
   esbuild@0.25.8:
     optionalDependencies:
@@ -2194,14 +2251,18 @@ snapshots:
       '@esbuild/win32-arm64': 0.25.8
       '@esbuild/win32-ia32': 0.25.8
       '@esbuild/win32-x64': 0.25.8
+    optional: true
 
-  esm-env@1.2.2: {}
+  esm-env@1.2.2:
+    optional: true
 
   esrap@2.1.0:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.4
+    optional: true
 
-  estree-walker@2.0.2: {}
+  estree-walker@2.0.2:
+    optional: true
 
   fast-glob@3.3.3:
     dependencies:
@@ -2218,6 +2279,7 @@ snapshots:
   fdir@6.4.6(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
+    optional: true
 
   fill-range@7.1.1:
     dependencies:
@@ -2227,6 +2289,16 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
+
+  framer-motion@12.23.11(@emotion/is-prop-valid@1.3.1)(react-dom@18.0.0(react@18.0.0))(react@18.0.0):
+    dependencies:
+      motion-dom: 12.23.9
+      motion-utils: 12.23.6
+      tslib: 2.8.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 1.3.1
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
 
   fsevents@2.3.3:
     optional: true
@@ -2279,6 +2351,7 @@ snapshots:
   is-reference@3.0.3:
     dependencies:
       '@types/estree': 1.0.8
+    optional: true
 
   isexe@2.0.0: {}
 
@@ -2292,13 +2365,15 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  kleur@4.1.5: {}
+  kleur@4.1.5:
+    optional: true
 
   lilconfig@3.1.3: {}
 
   lines-and-columns@1.2.4: {}
 
-  locate-character@3.0.0: {}
+  locate-character@3.0.0:
+    optional: true
 
   loose-envify@1.4.0:
     dependencies:
@@ -2313,6 +2388,7 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.4
+    optional: true
 
   merge2@1.4.1: {}
 
@@ -2327,11 +2403,20 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  mri@1.2.0: {}
+  motion-dom@12.23.9:
+    dependencies:
+      motion-utils: 12.23.6
 
-  mrmime@2.0.1: {}
+  motion-utils@12.23.6: {}
 
-  ms@2.1.3: {}
+  mri@1.2.0:
+    optional: true
+
+  mrmime@2.0.1:
+    optional: true
+
+  ms@2.1.3:
+    optional: true
 
   mz@2.7.0:
     dependencies:
@@ -2341,9 +2426,8 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  next-themes@0.2.1(next@14.2.16(react-dom@18.0.0(react@18.0.0))(react@18.0.0))(react-dom@18.0.0(react@18.0.0))(react@18.0.0):
+  next-themes@0.4.6(react-dom@18.0.0(react@18.0.0))(react@18.0.0):
     dependencies:
-      next: 14.2.16(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       react: 18.0.0
       react-dom: 18.0.0(react@18.0.0)
 
@@ -2393,7 +2477,8 @@ snapshots:
 
   picomatch@2.3.1: {}
 
-  picomatch@4.0.3: {}
+  picomatch@4.0.3:
+    optional: true
 
   pify@2.3.0: {}
 
@@ -2447,6 +2532,7 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+    optional: true
 
   queue-microtask@1.2.3: {}
 
@@ -2481,11 +2567,13 @@ snapshots:
       react: 18.0.0
       react-dom: 18.0.0(react@18.0.0)
       react-router: 6.30.0(react@18.0.0)
+    optional: true
 
   react-router@6.30.0(react@18.0.0):
     dependencies:
       '@remix-run/router': 1.23.0
       react: 18.0.0
+    optional: true
 
   react-style-singleton@2.2.3(@types/react@18.0.0)(react@18.0.0):
     dependencies:
@@ -2540,6 +2628,7 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.46.1
       '@rollup/rollup-win32-x64-msvc': 4.46.1
       fsevents: 2.3.3
+    optional: true
 
   run-parallel@1.2.0:
     dependencies:
@@ -2548,12 +2637,14 @@ snapshots:
   sade@1.8.1:
     dependencies:
       mri: 1.2.0
+    optional: true
 
   scheduler@0.21.0:
     dependencies:
       loose-envify: 1.4.0
 
-  set-cookie-parser@2.7.1: {}
+  set-cookie-parser@2.7.1:
+    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -2568,10 +2659,12 @@ snapshots:
       '@polka/url': 1.0.0-next.29
       mrmime: 2.0.1
       totalist: 3.0.1
+    optional: true
 
   source-map-js@1.2.1: {}
 
-  source-map@0.7.6: {}
+  source-map@0.7.6:
+    optional: true
 
   streamsearch@1.1.0: {}
 
@@ -2628,6 +2721,7 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.17
       zimmerframe: 1.1.2
+    optional: true
 
   tailwind-merge@2.5.5: {}
 
@@ -2674,18 +2768,21 @@ snapshots:
     dependencies:
       fdir: 6.4.6(picomatch@4.0.3)
       picomatch: 4.0.3
+    optional: true
 
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
 
-  totalist@3.0.1: {}
+  totalist@3.0.1:
+    optional: true
 
   ts-interface-checker@0.1.13: {}
 
   tslib@2.8.1: {}
 
-  turbo-stream@2.4.1: {}
+  turbo-stream@2.4.1:
+    optional: true
 
   typescript@5.0.2: {}
 
@@ -2721,15 +2818,18 @@ snapshots:
       fsevents: 2.3.3
       jiti: 1.21.7
       yaml: 2.8.0
+    optional: true
 
   vitefu@1.1.1(vite@7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)):
     optionalDependencies:
       vite: 7.0.6(@types/node@22.0.0)(jiti@1.21.7)(yaml@2.8.0)
+    optional: true
 
   vue-router@4.5.1(vue@3.5.18(typescript@5.0.2)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.18(typescript@5.0.2)
+    optional: true
 
   vue@3.5.18(typescript@5.0.2):
     dependencies:
@@ -2740,6 +2840,7 @@ snapshots:
       '@vue/shared': 3.5.18
     optionalDependencies:
       typescript: 5.0.2
+    optional: true
 
   which@2.0.2:
     dependencies:
@@ -2759,4 +2860,5 @@ snapshots:
 
   yaml@2.8.0: {}
 
-  zimmerframe@1.1.2: {}
+  zimmerframe@1.1.2:
+    optional: true
