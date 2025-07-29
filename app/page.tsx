@@ -269,11 +269,11 @@ export default function Portfolio() {
     },
     {
       id: 12,
-      image: "/aerial-surfing-photo.jpeg",
-      title: "Aerial Surfing",
+      image: "/img-0844-polarr.jpeg",
+      title: "Aerial Surfer in Foam",
       description:
-        "An aerial shot of a surfer catching a wave in crystal clear water, showcasing the power and beauty of the ocean.",
-      tags: ["Surfing", "Aerial", "Ocean", "Action"],
+        "An aerial perspective of a surfer in a black wetsuit, paddling through the intricate patterns of white ocean foam against dark green water.",
+      tags: ["Surfing", "Aerial", "Ocean", "Abstract", "Action"],
     },
   ]
 
@@ -452,7 +452,7 @@ export default function Portfolio() {
                 </button>
               ))}
               <div className="pt-4">
-                <ThemeToggleButton />
+                <ThemeToggleButton onThemeChange={() => setIsMenuOpen(false)} />
               </div>
             </div>
           </motion.div>

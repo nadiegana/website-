@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
-import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "Nicolas Saenz | Creative Designer & Visual Storyteller",
@@ -71,11 +70,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
-        <Suspense fallback={null}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <main>{children}</main>
-          </ThemeProvider>
-        </Suspense>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   )
