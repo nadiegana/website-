@@ -7,7 +7,7 @@ export default function TermsOfServicePage() {
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
           <div className="space-y-6 text-muted-foreground">
-            <p><strong>Effective Date:</strong> [Insert Date]</p>
+            <p><strong>Effective Date:</strong> Jul 2025</p>
 
             <p>
               Welcome to the portfolio website of Nicolás Saenz Silva (the "Site"). By accessing or using this website (nicolassaenzdesign.com),
