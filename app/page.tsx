@@ -51,6 +51,39 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Keyboard navigation for project modal
+  const handlePrevImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1))
+    }
+  }
+
+  const handleNextImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex((prevIndex) => (prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1))
+    }
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (selectedProject && selectedProject.images && selectedProject.images.length > 1) {
+        if (event.key === "ArrowLeft") {
+          handlePrevImage()
+        } else if (event.key === "ArrowRight") {
+          handleNextImage()
+        }
+      }
+    }
+
+    if (selectedProject) {
+      window.addEventListener("keydown", handleKeyDown)
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [selectedProject]) // Removed handlePrevImage and handleNextImage from dependencies
+
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsSubmitting(true)
@@ -287,7 +320,7 @@ export default function Portfolio() {
       id: 6,
       title: "Cumbia Chicanombiana - Resonar Lab",
       description:
-        "Activist musical journey through Colorado, USA, where we explore the combination of participatory art and music in the service of environmental justice. La Cumbia Chicanombiana highlights the struggle of diverse communities and activists against social injustice and environmental damage caused by the fracking and oil industries. This co-production is inspired by interviews and workshops we conducted throughout the state, supported by local initiatives fighting against the destruction of their homelands and the serious deterioration of their health. .",
+        "Activist musical journey through Colorado, USA, where we explore the combination of participatory art and music in the service of environmental justice. La Cumbia Chicanombiana highlights the struggle of diverse communities and activists against social injustice and environmental damage caused by the fracking and oil industries. This co-production is inspired by interviews and workshops we conducted throughout the state, supported by local initiatives fighting against the destruction of their homelands and the serious deterioration of their health.",
       embedUrl: "https://www.youtube.com/embed/GrnuJulYmz0",
       tags: ["Activist", "Musical", "Showcase", "Creative"],
     },
@@ -336,18 +369,6 @@ export default function Portfolio() {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)
     return match && match[2].length === 11 ? match[2] : null
-  }
-
-  const handlePrevImage = () => {
-    if (selectedProject && selectedProject.images) {
-      setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1))
-    }
-  }
-
-  const handleNextImage = () => {
-    if (selectedProject && selectedProject.images) {
-      setCurrentImageIndex((prevIndex) => (prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1))
-    }
   }
 
   return (
@@ -1003,8 +1024,6 @@ export default function Portfolio() {
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
           <DialogContent className="max-w-4xl w-full p-0 rounded-lg h-[90vh] flex flex-col">
             <div className="relative w-full flex-grow flex flex-col items-center justify-center group">
-              {" "}
-              {/* Added 'group' class here */}
               {/* Background Image */}
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
@@ -1031,8 +1050,6 @@ export default function Portfolio() {
               </AnimatePresence>
               {/* Semi-transparent Overlay and Content */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 flex flex-col justify-end p-6 md:p-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
-                {" "}
-                {/* Modified classes for hover effect */}
                 <DialogHeader className="mb-2">
                   <DialogTitle className="text-2xl md:text-3xl font-bold text-white">
                     {selectedProject.title}
@@ -1043,40 +1060,38 @@ export default function Portfolio() {
                 </p>
                 {/* Navigation Controls for Multi-Image Projects */}
                 {selectedProject.images && selectedProject.images.length > 1 && (
-                  <>
-                    <div className="flex justify-between items-center mt-4">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="bg-white/20 hover:bg-white/40 text-white"
-                        onClick={handlePrevImage}
-                        aria-label="Previous image"
-                      >
-                        <ArrowLeft className="w-6 h-6" />
-                      </Button>
-                      <div className="flex space-x-2">
-                        {selectedProject.images.map((_, index) => (
-                          <button
-                            key={index}
-                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                              index === currentImageIndex ? "bg-primary-orange" : "bg-white/50 hover:bg-white"
-                            }`}
-                            onClick={() => setCurrentImageIndex(index)}
-                            aria-label={`View image ${index + 1}`}
-                          />
-                        ))}
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="bg-white/20 hover:bg-white/40 text-white"
-                        onClick={handleNextImage}
-                        aria-label="Next image"
-                      >
-                        <ArrowRight className="w-6 h-6" />
-                      </Button>
+                  <div className="flex justify-between items-center mt-4">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="bg-white/20 hover:bg-white/40 text-white"
+                      onClick={handlePrevImage}
+                      aria-label="Previous image"
+                    >
+                      <ArrowLeft className="w-6 h-6" />
+                    </Button>
+                    <div className="flex space-x-2">
+                      {selectedProject.images.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                            index === currentImageIndex ? "bg-primary-orange" : "bg-white/50 hover:bg-white"
+                          }`}
+                          onClick={() => setCurrentImageIndex(index)}
+                          aria-label={`View image ${index + 1}`}
+                        />
+                      ))}
                     </div>
-                  </>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="bg-white/20 hover:bg-white/40 text-white"
+                      onClick={handleNextImage}
+                      aria-label="Next image"
+                    >
+                      <ArrowRight className="w-6 h-6" />
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>
