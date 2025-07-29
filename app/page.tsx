@@ -82,7 +82,7 @@ export default function Portfolio() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
     }
-  }, [selectedProject]) // Removed handlePrevImage and handleNextImage from dependencies
+  }, [selectedProject])
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -1049,7 +1049,7 @@ export default function Portfolio() {
                 </motion.div>
               </AnimatePresence>
               {/* Semi-transparent Overlay and Content */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 flex flex-col justify-end p-6 md:p-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="absolute inset-0 bg-black/70 md:bg-black/0 md:group-hover:bg-black/70 flex flex-col justify-end p-6 md:p-10 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
                 <DialogHeader className="mb-2">
                   <DialogTitle className="text-2xl md:text-3xl font-bold text-white">
                     {selectedProject.title}
