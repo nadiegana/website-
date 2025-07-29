@@ -9,7 +9,19 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu, PlayCircle } from "lucide-react"
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  ArrowRight,
+  Palette,
+  CheckCircle,
+  X,
+  Menu,
+  PlayCircle,
+  ArrowLeft,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -324,6 +336,18 @@ export default function Portfolio() {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)
     return match && match[2].length === 11 ? match[2] : null
+  }
+
+  const handlePrevImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? selectedProject.images.length - 1 : prevIndex - 1))
+    }
+  }
+
+  const handleNextImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex((prevIndex) => (prevIndex === selectedProject.images.length - 1 ? 0 : prevIndex + 1))
+    }
   }
 
   return (
@@ -977,22 +1001,85 @@ export default function Portfolio() {
 
       {selectedProject && (
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold">{selectedProject.title}</DialogTitle>
-            </DialogHeader>
-            <div className="relative">
-              <Image
-                src={selectedProject.image || "/placeholder.svg"}
-                alt={selectedProject.title}
-                width={800}
-                height={600}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
+          <DialogContent className="max-w-4xl w-full p-0 rounded-lg h-[90vh] flex flex-col">
+            <div className="relative w-full flex-grow flex flex-col items-center justify-center group">
+              {" "}
+              {/* Added 'group' class here */}
+              {/* Background Image */}
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <Image
+                    src={
+                      (selectedProject.images && selectedProject.images[currentImageIndex]) ||
+                      selectedProject.image ||
+                      "/placeholder.svg"
+                    }
+                    alt={`${selectedProject.title} image ${currentImageIndex + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-contain" // Ensures the entire image is visible
+                    onError={handleImageError}
+                  />
+                </motion.div>
+              </AnimatePresence>
+              {/* Semi-transparent Overlay and Content */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/70 flex flex-col justify-end p-6 md:p-10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
+                {" "}
+                {/* Modified classes for hover effect */}
+                <DialogHeader className="mb-2">
+                  <DialogTitle className="text-2xl md:text-3xl font-bold text-white">
+                    {selectedProject.title}
+                  </DialogTitle>
+                </DialogHeader>
+                <p className="text-sm md:text-base mb-4 overflow-y-auto custom-scrollbar">
+                  {selectedProject.detailedDescription || selectedProject.description}
+                </p>
+                {/* Navigation Controls for Multi-Image Projects */}
+                {selectedProject.images && selectedProject.images.length > 1 && (
+                  <>
+                    <div className="flex justify-between items-center mt-4">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="bg-white/20 hover:bg-white/40 text-white"
+                        onClick={handlePrevImage}
+                        aria-label="Previous image"
+                      >
+                        <ArrowLeft className="w-6 h-6" />
+                      </Button>
+                      <div className="flex space-x-2">
+                        {selectedProject.images.map((_, index) => (
+                          <button
+                            key={index}
+                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                              index === currentImageIndex ? "bg-primary-orange" : "bg-white/50 hover:bg-white"
+                            }`}
+                            onClick={() => setCurrentImageIndex(index)}
+                            aria-label={`View image ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="bg-white/20 hover:bg-white/40 text-white"
+                        onClick={handleNextImage}
+                        aria-label="Next image"
+                      >
+                        <ArrowRight className="w-6 h-6" />
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-            <p className="text-muted-foreground">
-              {selectedProject.detailedDescription || selectedProject.description}
-            </p>
           </DialogContent>
         </Dialog>
       )}
