@@ -16,7 +16,7 @@ export default function TermsOfServicePage() {
               You should replace this text with your own terms. It's highly recommended to consult with a legal
               professional to draft this document.
             </p>
-            <p>Key sections often include:</p>
+            <div>Key sections often include:</div>
             <ul className="list-disc list-inside mt-2 space-y-2">
               <li>Acceptance of Terms.</li>
               <li>Description of Service.</li>

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Nicolas Saenz Design",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png", // Make sure to create this image in your public folder
         width: 1200,
         height: 630,
         alt: "Nicolas Saenz Design Portfolio",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Nicolas Saenz | Creative Designer & Visual Storyteller",
     description: "Portfolio of Nicolas Saenz, a visual designer, storyteller, and creative collaborator.",
     creator: "@nadie_gana",
-    images: ["/og-image.png"],
+    images: ["/og-image.png"], // Make sure to create this image
   },
   robots: {
     index: true,

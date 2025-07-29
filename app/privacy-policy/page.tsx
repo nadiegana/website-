@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
               You should replace this text with your own policy. It's recommended to consult with a legal professional
               to ensure your policy is compliant with all applicable laws and regulations, such as GDPR, CCPA, etc.
             </p>
-            <p>Typically, a privacy policy will include information about:</p>
+            <div>Typically, a privacy policy will include information about:</div>
             <ul className="list-disc list-inside mt-2 space-y-2">
               <li>What information is collected (e.g., personal data, usage data).</li>
               <li>How and why the information is collected.</li>

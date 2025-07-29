@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect, useActionState } from "react"
+import type React from "react"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,19 +15,21 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { MotionWrapper } from "@/components/motion-wrapper"
 import { ThemeToggleButton } from "@/components/theme-toggle-button"
-import { submitContactForm } from "@/app/contact-action" // Import the server action
+import { submitContactForm } from "@/app/contact-action"
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("graphic-design")
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedPhoto, setSelectedPhoto] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [showSuccess, setShowSuccess] = useState(false)
   const [headerScrolled, setHeaderScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedVideo, setSelectedVideo] = useState(null)
 
-  const [state, formAction, isPending] = useActionState(submitContactForm, null)
+  // State for form handling (React 18 compatible)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formError, setFormError] = useState<string | null>(null)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,15 +39,26 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Handle success/error state from Server Action
-  useEffect(() => {
-    if (state?.success) {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setFormError(null)
+    setShowSuccess(false)
+
+    const formData = new FormData(event.currentTarget)
+    const result = await submitContactForm(formData)
+
+    setIsSubmitting(false)
+
+    if (result?.success) {
       setShowSuccess(true)
       setTimeout(() => setShowSuccess(false), 5000)
-    } else if (state?.error) {
-      console.error("Form submission error:", state.error)
+      event.currentTarget.reset()
+    } else if (result?.error) {
+      setFormError(result.error)
+      console.error("Form submission error:", result.error)
     }
-  }, [state])
+  }
 
   const projects = [
     {
@@ -336,7 +351,6 @@ export default function Portfolio() {
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
-            {/* Ensure src is always a public path */}
             <Image
               src="/nadie-gana-logo-white.png"
               alt="NADIE GANA Logo"
@@ -821,7 +835,7 @@ export default function Portfolio() {
             </MotionWrapper>
             <MotionWrapper>
               <Card className="p-8 shadow-xl bg-muted/50 border-0">
-                <form action={formAction} className="space-y-6">
+                <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="firstName" className="text-sm font-medium">
@@ -874,14 +888,14 @@ export default function Portfolio() {
                   </div>
                   <Button
                     type="submit"
-                    disabled={isPending}
+                    disabled={isSubmitting}
                     className="w-full bg-primary-orange hover:bg-orange-600 text-white"
                     size="lg"
                   >
-                    {isPending ? "Sending..." : "Send Message"}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
-                  {state?.error && <p className="text-sm text-red-500 mt-2">{state.error}</p>}
+                  {formError && <p className="text-sm text-red-500 mt-2">{formError}</p>}
                 </form>
               </Card>
             </MotionWrapper>
