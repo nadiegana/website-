@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu } from "lucide-react"
+import { Mail, Phone, MapPin, Instagram, ArrowRight, Palette, CheckCircle, X, Menu } from "lucide-react" // Added Video icon
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -208,6 +208,55 @@ export default function Portfolio() {
       title: "Mountain Road",
       description: "Winding mountain road through dramatic terrain, symbolizing the journey of creative exploration.",
       tags: ["Mountain", "Road", "Journey", "Dramatic"],
+    },
+  ]
+
+  const videoProjects = [
+    {
+      id: 1,
+      title: "Graffiti - BOCHICA ART - California",
+      description:
+        "A collaborative project showcasing vibrant graffiti art in California, capturing the creative process and final pieces.",
+      embedUrl: "https://www.youtube.com/embed/e_zoOxFzjxk",
+      tags: ["Graffiti", "Art", "California", "Collaboration", "Street Art"],
+    },
+    {
+      id: 2,
+      title: "Street Rollerblade ft. Milu Guevara - BOGOTA COVID",
+      description:
+        "Aggressive street rollerblading with Milu Guevara in Bogotá during the COVID era, filmed in 4K for optimal visual experience.",
+      embedUrl: "https://www.youtube.com/embed/t_inbdnpyzQ",
+      tags: ["Rollerblading", "Street Sports", "Bogotá", "COVID", "4K Video"],
+    },
+    {
+      id: 3,
+      title: "Motion Graphics & Visual Effects",
+      description:
+        "A showcase of dynamic motion graphics and visual effects work, demonstrating creative animation techniques.",
+      embedUrl: "https://www.youtube.com/embed/3cZvImm6Fgw",
+      tags: ["Motion Graphics", "Visual Effects", "Animation", "Creative", "Digital Art"],
+    },
+    {
+      id: 4,
+      title: "MENTAL HYGIENE - Resonar Lab",
+      description: "Distance co-production that reflects on the negative impact of social networks and media.",
+      embedUrl: "https://www.youtube.com/embed/8yJCPB92W1I",
+      tags: ["Music Video", "Experimental", "Social Commentary", "Resonar Lab"],
+    },
+    {
+      id: 5,
+      title: "Abstract Visuals & Soundscapes",
+      description: "An immersive journey through abstract visuals synchronized with unique soundscapes.",
+      embedUrl: "https://www.youtube.com/embed/lzYrsDsCXrc",
+      tags: ["Abstract", "Visuals", "Soundscapes", "Experimental"],
+    },
+    {
+      id: 6,
+      title: "Dynamic Motion Design Showcase",
+      description:
+        "A compilation of dynamic motion design pieces, highlighting various animation techniques and creative concepts.",
+      embedUrl: "https://www.youtube.com/embed/GrnuJulYmz0",
+      tags: ["Motion Design", "Animation", "Showcase", "Creative"],
     },
   ]
 
@@ -537,6 +586,26 @@ export default function Portfolio() {
                   Photography
                 </span>
               </button>
+              <button
+                onClick={() => setActiveTab("videos")}
+                className="px-6 py-2 rounded-full text-sm font-medium relative"
+              >
+                {activeTab === "videos" && (
+                  <motion.div
+                    layoutId="active-tab-indicator"
+                    className="absolute inset-0 bg-primary-orange rounded-full"
+                  />
+                )}
+                <span
+                  className={`relative z-10 transition-colors duration-300 ${
+                    activeTab === "videos"
+                      ? "font-semibold text-dark-charcoal"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Videos
+                </span>
+              </button>
             </div>
           </div>
 
@@ -586,7 +655,7 @@ export default function Portfolio() {
                     </motion.div>
                   ))}
                 </div>
-              ) : (
+              ) : activeTab === "photography" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {photographyProjects.map((photo, index) => (
                     <motion.div
@@ -632,6 +701,50 @@ export default function Portfolio() {
 
                       {/* Corner indicator */}
                       <div className="absolute top-3 right-3 w-2 h-2 bg-white/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {videoProjects.map((video) => (
+                    <motion.div
+                      key={video.id}
+                      className="group relative aspect-video overflow-hidden rounded-lg shadow-lg"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: video.id * 0.05 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <iframe
+                        src={video.embedUrl}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      {/* Overlay for title/description/tags on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
+                        <motion.div
+                          initial={{ y: 20, opacity: 0 }}
+                          whileHover={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-white"
+                        >
+                          <h3 className="font-bold text-lg mb-2">{video.title}</h3>
+                          <p className="text-sm text-gray-200 mb-3 line-clamp-2">{video.description}</p>
+                          <div className="flex flex-wrap gap-1">
+                            {video.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
