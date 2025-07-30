@@ -29,6 +29,8 @@ import { ThemeToggleButton } from "@/components/theme-toggle-button"
 import { submitContactForm } from "@/app/contact-action"
 import LightRays from "@/components/light-rays"
 import SplitText from "@/components/split-text" // Import SplitText
+import TiltedCard from "@/components/TiltedCard" // Import TiltedCard
+import "@/components/TiltedCard.css" // Import TiltedCard CSS
 
 const MotionWrapper = motion.div
 
@@ -558,7 +560,6 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-orange to-orange-400 rounded-3xl blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
                 <Image
                   src="/hero-mountain-road.jpeg"
                   alt="Creative explorer on mountain road"
@@ -566,6 +567,7 @@ export default function Portfolio() {
                   height={600}
                   className="relative rounded-3xl shadow-2xl"
                   priority
+                  sizes="(max-width: 1024px) 100vw, 50vw" // At most 1024px wide, it takes 100% of viewport, otherwise 50%
                 />
               </div>
             </motion.div>
@@ -753,6 +755,7 @@ export default function Portfolio() {
                             height={400}
                             className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                             onError={handleImageError}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // Responsive sizes for grid
                           />
                         </div>
                         <CardContent className="p-6 flex-grow flex flex-col">
@@ -780,52 +783,23 @@ export default function Portfolio() {
                   {photographyProjects.map((photo, index) => (
                     <motion.div
                       key={photo.id}
-                      className="group relative aspect-square overflow-hidden cursor-pointer rounded-lg"
-                      onClick={() => handlePhotoClick(photo)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") handlePhotoClick(photo)
-                      }}
-                      role="button"
-                      tabIndex={0}
+                      className="aspect-square" // Maintain aspect ratio for grid layout
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.05 }}
-                      whileHover={{ scale: 1.02 }}
                     >
-                      <Image
-                        src={photo.image || "/placeholder.svg"}
-                        alt={photo.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={handleImageError}
+                      <TiltedCard
+                        imageSrc={photo.image || "/placeholder.svg"}
+                        altText={photo.title}
+                        containerHeight="100%"
+                        containerWidth="100%"
+                        imageHeight="100%"
+                        imageWidth="100%"
+                        scaleOnHover={1.05} // Slightly less scale than default to fit grid better
+                        rotateAmplitude={8} // Slightly less rotation for subtle effect
+                        showMobileWarning={false}
+                        onClick={() => handlePhotoClick(photo)} // Pass click handler
                       />
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
-                        <motion.div
-                          initial={{ y: 20, opacity: 0 }}
-                          whileHover={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.1 }}
-                          className="text-white"
-                        >
-                          <h3 className="font-bold text-lg mb-2">{photo.title}</h3>
-                          <p className="text-sm text-gray-200 mb-3 line-clamp-2">{photo.description}</p>
-                          <div className="flex flex-wrap gap-1">
-                            {photo.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </motion.div>
-                      </div>
-
-                      {/* Corner indicator */}
-                      <div className="absolute top-3 right-3 w-2 h-2 bg-white/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                   ))}
                 </div>
@@ -1023,20 +997,41 @@ export default function Portfolio() {
             className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
             onClick={() => setSelectedPhoto(null)}
           >
-            <motion.div layoutId={`photo-${selectedPhoto.id}`} className="relative max-w-4xl max-h-[90vh]">
-              <Image
-                src={selectedPhoto.image || "/placeholder.svg"}
-                alt="Enlarged photo"
-                width={1200}
-                height={800}
-                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-              />
+            <motion.div
+              layoutId={`photo-${selectedPhoto.id}`}
+              className="relative max-w-4xl w-full max-h-[90vh] bg-background rounded-lg overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
+            >
+              <div className="relative w-full flex-grow flex items-center justify-center p-4">
+                <Image
+                  src={selectedPhoto.image || "/placeholder.svg"}
+                  alt={selectedPhoto.title}
+                  width={1200} // Max width for the image
+                  height={800} // Max height for the image
+                  className="max-w-full max-h-[calc(90vh-100px)] object-contain rounded-lg"
+                  sizes="90vw" // It will take up to 90% of the viewport width in the modal
+                />
+              </div>
+              {selectedPhoto.description && (
+                <div className="p-4 bg-muted/50 border-t border-border text-foreground text-center">
+                  <h3 className="font-bold text-lg mb-2">{selectedPhoto.title}</h3>
+                  <p className="text-sm text-muted-foreground">{selectedPhoto.description}</p>
+                  <div className="flex flex-wrap justify-center gap-1 mt-2">
+                    {selectedPhoto.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
             <motion.button
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 rounded-full p-2"
+              onClick={() => setSelectedPhoto(null)}
             >
               <X className="w-6 h-6 text-white" />
             </motion.button>
@@ -1084,7 +1079,7 @@ export default function Portfolio() {
                     }
                     alt={`${selectedProject.title} image ${currentImageIndex + 1}`}
                     fill
-                    sizes="100vw"
+                    sizes="90vw" // It will take up to 90% of the viewport width in the modal
                     className="object-contain" // Ensures the entire image is visible
                     onError={handleImageError}
                   />

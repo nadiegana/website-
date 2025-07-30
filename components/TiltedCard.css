@@ -1,0 +1,141 @@
+.tilted-card-figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Ensure cursor is pointer for clickable items */
+}
+
+.tilted-card-mobile-alert {
+  position: absolute;
+  top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .tilted-card-mobile-alert {
+    display: block;
+  }
+}
+
+.tilted-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: 15px; /* Ensure rounded corners are applied to the inner container */
+  overflow: hidden; /* Clip content to rounded corners */
+}
+
+.tilted-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-radius: 15px; /* Apply border-radius here as well */
+  will-change: transform;
+  transform: translateZ(0);
+  width: 100%; /* Ensure image fills its container */
+  height: 100%; /* Ensure image fills its container */
+}
+
+.tilted-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  will-change: transform;
+  transform: translateZ(30px); /* Bring overlay slightly forward */
+  /* Add gradient and flex properties for content alignment */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  border-radius: 15px; /* Match image border-radius */
+}
+
+.tilted-card-caption {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 4px 10px;
+  font-size: 10px;
+  color: #2d2d2d;
+  opacity: 0;
+  z-index: 3;
+}
+
+/* Ensure the inner content of the overlay is styled correctly */
+.tilted-card-overlay .text-white {
+  color: white;
+}
+.tilted-card-overlay .font-bold {
+  font-weight: bold;
+}
+.tilted-card-overlay .text-lg {
+  font-size: 1.125rem; /* 18px */
+}
+.tilted-card-overlay .mb-2 {
+  margin-bottom: 0.5rem;
+}
+.tilted-card-overlay .text-sm {
+  font-size: 0.875rem; /* 14px */
+}
+.tilted-card-overlay .text-gray-200 {
+  color: #e5e7eb;
+}
+.tilted-card-overlay .mb-3 {
+  margin-bottom: 0.75rem;
+}
+.tilted-card-overlay .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tilted-card-overlay .flex-wrap {
+  flex-wrap: wrap;
+}
+.tilted-card-overlay .gap-1 {
+  gap: 0.25rem;
+}
+.tilted-card-overlay .px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.tilted-card-overlay .py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.tilted-card-overlay .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.tilted-card-overlay .backdrop-blur-sm {
+  backdrop-filter: blur(2px);
+}
+.tilted-card-overlay .rounded-full {
+  border-radius: 9999px;
+}
+.tilted-card-overlay .text-xs {
+  font-size: 0.75rem; /* 12px */
+}
+.tilted-card-overlay .font-medium {
+  font-weight: 500;
+}
+.tilted-card-overlay .border {
+  border-width: 1px;
+}
+.tilted-card-overlay .border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.3);
+}
