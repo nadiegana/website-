@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Nicolas Saenz | Creative Designer & Visual Storyteller",
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <main>{children}</main>
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>

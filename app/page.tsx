@@ -576,8 +576,8 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 bg-muted/50">
-        <div className="container mx-auto">
+      <section id="about" className="relative py-20 px-4 bg-muted/50 overflow-hidden">
+        <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-5 gap-16 items-center">
             <MotionWrapper className="lg:col-span-3 space-y-6">
               <h2 className="text-4xl font-bold text-foreground">Hi there, I'm Nicolas!</h2>
