@@ -25,9 +25,12 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { MotionWrapper } from "@/components/motion-wrapper"
 import { ThemeToggleButton } from "@/components/theme-toggle-button"
 import { submitContactForm } from "@/app/contact-action"
+import LightRays from "@/components/light-rays"
+import SplitText from "@/components/split-text" // Import SplitText
+
+const MotionWrapper = motion.div
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("graphic-design")
@@ -460,46 +463,80 @@ export default function Portfolio() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-16 px-4">
-        <div className="container mx-auto">
+      <section id="home" className="relative pt-32 pb-16 px-4 overflow-hidden">
+        {/* LightRays Background */}
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#F26522" /* Using primary-orange from your tailwind config */
+          raysSpeed={0.8}
+          lightSpread={0.7}
+          rayLength={1.5}
+          pulsating={true}
+          fadeDistance={0.8}
+          saturation={1.2}
+          followMouse={true}
+          mouseInfluence={0.2}
+          noiseAmount={0.05}
+          distortion={0.02}
+          className="absolute inset-0 z-0"
+        />
+        <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
-            <MotionWrapper className="space-y-8">
+            {/* Removed MotionWrapper from here to avoid animation conflicts */}
+            <div className="space-y-8">
               <div className="space-y-4">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
                   className="inline-flex items-center space-x-2 bg-muted px-4 py-2 rounded-full text-sm font-medium text-muted-foreground"
                 >
                   <Palette className="w-4 h-4 text-primary-orange" />
                   <span>Creative Explorer</span>
                 </motion.div>
-                <motion.h1
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-5xl lg:text-7xl font-bold leading-tight text-foreground"
-                >
-                  Creative
-                  <span className="block bg-gradient-to-r from-primary-orange to-orange-500 bg-clip-text text-transparent">
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-foreground">
+                  <SplitText
+                    text="Creative"
+                    tag="span"
+                    splitType="chars"
+                    delay={0.03}
+                    duration={0.6}
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                  />
+                  {/* Use motion.span for "Design" to ensure gradient visibility */}
+                  <motion.span
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6, ease: "power3.out" }}
+                    className="block bg-gradient-to-r from-primary-orange to-orange-500 bg-clip-text text-transparent"
+                  >
                     Design
-                  </span>
-                  Solutions
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
+                  </motion.span>
+                  <SplitText
+                    text="Solutions"
+                    tag="span"
+                    splitType="chars"
+                    delay={0.03}
+                    duration={0.6}
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                  />
+                </h1>
+                <SplitText
+                  text="I craft compelling visual experiences that tell your story and connect with your audience through innovative design."
+                  splitType="words" // Animates word by word
+                  delay={0.01} // Smaller stagger delay for paragraph
+                  duration={0.8}
+                  from={{ opacity: 0, y: 20 }}
+                  to={{ opacity: 1, y: 0 }}
                   className="text-lg max-w-lg text-muted-foreground"
-                >
-                  I craft compelling visual experiences that tell your story and connect with your audience through
-                  innovative design.
-                </motion.p>
+                />
               </div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.8, duration: 0.5 }} // Adjusted delay to follow text animation
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Button
@@ -513,8 +550,13 @@ export default function Portfolio() {
                   Get In Touch
                 </Button>
               </motion.div>
-            </MotionWrapper>
-            <MotionWrapper className="relative" transition={{ duration: 0.5, delay: 0.2 }}>
+            </div>
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-orange to-orange-400 rounded-3xl blur-3xl opacity-20 dark:opacity-30 animate-pulse"></div>
                 <Image
@@ -526,7 +568,7 @@ export default function Portfolio() {
                   priority
                 />
               </div>
-            </MotionWrapper>
+            </motion.div>
           </div>
         </div>
       </section>
