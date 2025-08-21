@@ -438,11 +438,11 @@ export default function Portfolio() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <Image
-              src="/nadie-gana-logo-white.png"
+              src="/nadie-gana-logo-black.png"
               alt="NADIE GANA Logo"
               width={140}
               height={40}
-              className="h-8 w-auto dark:invert-0 invert transition-all duration-300"
+              className="h-8 w-auto dark:invert invert-0 transition-all duration-300"
             />
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
