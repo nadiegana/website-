@@ -6,9 +6,9 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 import {
   Mail,
   Phone,
@@ -159,7 +159,7 @@ export default function Portfolio() {
       category: "Web Design",
       description:
         "Complete website design and development for Harvest of All First Nations, featuring cultural sensitivity, modern UX, and community-focused storytelling.",
-      image: "/hafnco-website.jpeg",
+      image: "/hafnco-website-homepage.jpeg",
       tags: ["Web Design", "Non-Profit", "Cultural Design", "UX/UI"],
       websiteUrl: "https://www.hafnco.org",
       detailedDescription:
@@ -183,6 +183,42 @@ export default function Portfolio() {
       tags: ["Hand Lettering", "Typography", "Colombian Culture", "Brush Script", "Cultural Design"],
       detailedDescription:
         "This lettering project explores the intersection of Colombian musical heritage and contemporary typography design. Created with traditional brush techniques and modern color theory, the series includes six color variations that each evoke different emotional responses while maintaining the energetic spirit of Cumbia music.",
+    },
+    {
+      id: 7,
+      title: "Corn Festival Branding",
+      category: "Event Branding",
+      description:
+        "Complete visual identity system for the Annual Corn Festival including event materials, social media campaign, and comprehensive wayfinding signage system for safe festival operations.",
+      image: "/corn-festival-poster.jpeg",
+      images: [
+        "/corn-festival-poster.jpeg",
+        "/corn-festival-save-the-date.png",
+        "/corn-festival-map.png",
+        // Headliners organized A-Z by artist name
+        "/corn-festival-jackie-bird-headliner.png", // Jackie Bird & Sons
+        "/corn-festival-jackie-bird-description.png",
+        "/corn-festival-melissa-headliner.png", // Melissa Ivey & The Future Ancestors
+        "/corn-festival-melissa-description.png",
+        "/corn-festival-mono-verde-headliner.png", // Mono Verde Collective
+        "/corn-festival-mono-verde-description.png",
+        "/corn-festival-stella-headliner.png", // Stella Standingbear
+        "/corn-festival-stella-description.png",
+        // Signage system
+        "/corn-festival-no-smoking-sign.png",
+        "/corn-festival-waiver-required-sign.png",
+        "/corn-festival-no-drugs-alcohol-sign.png",
+        "/corn-festival-native-food-court-sign.png",
+        "/corn-festival-no-weapons-sign.png",
+        "/corn-festival-filming-photography-sign.png",
+        "/corn-festival-no-pets-sign.png",
+        "/corn-festival-red-barn-sign.png",
+        "/corn-festival-sign-waiver-sign.png",
+        "/corn-festival-kids-area-sign.png",
+      ],
+      tags: ["Event Design", "Festival Branding", "Wayfinding", "Signage", "Cultural Design"],
+      detailedDescription:
+        "This comprehensive festival branding project celebrates Indigenous agricultural heritage through respectful and authentic visual design. The project encompassed all visual touchpoints for the annual Corn Festival, creating a complete brand ecosystem that includes promotional materials, digital campaigns, and operational signage. The main event poster features traditional Native American imagery and cultural elements, complemented by a 'Save the Date' announcement with ceremonial regalia photography and a detailed festival map with complete wayfinding system. The social media campaign featured individual headliner spotlights for Jackie Bird & Sons, Melissa Ivey & The Future Ancestors, Mono Verde Collective, and Stella Standingbear, each with both portrait-style announcements and detailed biographical posts. The comprehensive signage system includes regulatory signs (No Smoking, No Weapons, No Drugs/Alcohol, No Pets), operational signs (Waiver Requirements, Photography Notices), and directional wayfinding (Native Food Court, Red Barn, Kids Area). The design approach honored Indigenous culture while creating clear, functional materials that maintained brand consistency across all platforms and applications. The warm earth-tone color palette, traditional corn motifs, and consistent typography created a cohesive brand identity that respected cultural significance while ensuring accessibility, safety, and engagement across all festival touchpoints.",
     },
   ]
 
@@ -735,11 +771,17 @@ export default function Portfolio() {
               transition={{ duration: 0.3 }}
             >
               {activeTab === "graphic-design" ? (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {projects.map((project) => (
-                    <motion.div key={project.id} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }}>
-                      <Card
-                        className="group cursor-pointer overflow-hidden h-full flex flex-col"
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                      className="group"
+                    >
+                      <div
+                        className="relative overflow-hidden rounded-3xl bg-card border border-border/50 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:scale-[1.02]"
                         onClick={() => handleProjectClick(project)}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") handleProjectClick(project)
@@ -747,34 +789,81 @@ export default function Portfolio() {
                         role="button"
                         tabIndex={0}
                       >
-                        <div className="relative overflow-hidden">
+                        {/* Image Container */}
+                        <div className="relative aspect-[4/3] overflow-hidden">
                           <Image
                             src={project.image || "/placeholder.svg"}
                             alt={project.title}
-                            width={600}
-                            height={400}
-                            className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                             onError={handleImageError}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" // Responsive sizes for grid
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                          {/* Category Badge */}
+                          <div className="absolute top-4 left-4">
+                            <Badge
+                              variant="secondary"
+                              className="bg-background/95 text-foreground backdrop-blur-sm border border-border/50 shadow-lg font-medium px-3 py-1"
+                            >
+                              {project.category}
+                            </Badge>
+                          </div>
+
+                          {/* Hover Content */}
+                          <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <div className="text-white">
+                              <h3 className="text-xl font-bold mb-2 drop-shadow-lg">{project.title}</h3>
+                              <p className="text-sm text-white/90 line-clamp-2 drop-shadow-md">{project.description}</p>
+                            </div>
+                          </div>
                         </div>
-                        <CardContent className="p-6 flex-grow flex flex-col">
-                          <div className="space-y-3 flex-grow">
-                            <Badge variant="secondary">{project.category}</Badge>
-                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary-orange transition-colors">
+
+                        {/* Content Area */}
+                        <div className="p-6 space-y-4">
+                          <div className="space-y-3">
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary-orange transition-colors duration-300">
                               {project.title}
                             </h3>
-                            <p className="text-sm text-muted-foreground">{project.description}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                              {project.description}
+                            </p>
                           </div>
-                          <div className="flex flex-wrap gap-2 mt-4">
+
+                          {/* Tags */}
+                          <div className="flex flex-wrap gap-2">
                             {project.tags.slice(0, 3).map((tag) => (
-                              <Badge key={tag} variant="outline" className="text-xs">
+                              <Badge
+                                key={tag}
+                                variant="outline"
+                                className="text-xs border-muted-foreground/30 hover:border-primary-orange/50 transition-colors duration-300"
+                              >
                                 {tag}
                               </Badge>
                             ))}
+                            {project.tags.length > 3 && (
+                              <Badge variant="outline" className="text-xs border-muted-foreground/30">
+                                +{project.tags.length - 3} more
+                              </Badge>
+                            )}
                           </div>
-                        </CardContent>
-                      </Card>
+
+                          {/* Action Indicator */}
+                          <div className="flex items-center justify-between pt-2">
+                            <div className="flex items-center space-x-2 text-muted-foreground group-hover:text-primary-orange transition-colors duration-300">
+                              <span className="text-sm font-medium">
+                                {project.embedUrl || project.websiteUrl ? "View Project" : "View Details"}
+                              </span>
+                              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Subtle Border Glow */}
+                        <div className="absolute inset-0 rounded-3xl border border-primary-orange/0 group-hover:border-primary-orange/20 transition-colors duration-500 pointer-events-none" />
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -994,47 +1083,69 @@ export default function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setSelectedPhoto(null)}
           >
             <motion.div
               layoutId={`photo-${selectedPhoto.id}`}
-              className="relative max-w-4xl w-full max-h-[90vh] bg-background rounded-lg overflow-hidden flex flex-col"
-              onClick={(e) => e.stopPropagation()} // Prevent closing modal when clicking inside
+              className="relative max-w-6xl w-full max-h-[95vh] bg-background/95 backdrop-blur-md rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-border/20"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <div className="relative w-full flex-grow flex items-center justify-center p-4">
+              {/* Close Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-6 right-6 z-20 bg-background/90 hover:bg-background text-foreground backdrop-blur-md rounded-full shadow-lg border border-border/50 transition-all duration-300 hover:scale-110"
+                onClick={() => setSelectedPhoto(null)}
+                aria-label="Close photo"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+
+              {/* Image Container */}
+              <div className="relative w-full flex-grow flex items-center justify-center p-6">
                 <Image
                   src={selectedPhoto.image || "/placeholder.svg"}
                   alt={selectedPhoto.title}
-                  width={1200} // Max width for the image
-                  height={800} // Max height for the image
-                  className="max-w-full max-h-[calc(90vh-100px)] object-contain rounded-lg"
-                  sizes="90vw" // It will take up to 90% of the viewport width in the modal
+                  width={1200}
+                  height={800}
+                  className="max-w-full max-h-[calc(95vh-200px)] object-contain rounded-2xl shadow-lg"
+                  sizes="90vw"
                 />
               </div>
+
+              {/* Enhanced Photo Info */}
               {selectedPhoto.description && (
-                <div className="p-4 bg-muted/50 border-t border-border text-foreground text-center">
-                  <h3 className="font-bold text-lg mb-2">{selectedPhoto.title}</h3>
-                  <p className="text-sm text-muted-foreground">{selectedPhoto.description}</p>
-                  <div className="flex flex-wrap justify-center gap-1 mt-2">
-                    {selectedPhoto.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="p-8 bg-card/95 backdrop-blur-md border-t border-border/50"
+                >
+                  <div className="max-w-4xl mx-auto space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground">{selectedPhoto.title}</h3>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      {selectedPhoto.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {selectedPhoto.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="bg-muted/80 text-muted-foreground border-border/50 backdrop-blur-sm hover:bg-primary-orange/10 hover:border-primary-orange/30 transition-all duration-300 text-xs font-medium px-3 py-1"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               )}
             </motion.div>
-            <motion.button
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 rounded-full p-2"
-              onClick={() => setSelectedPhoto(null)}
-            >
-              <X className="w-6 h-6 text-white" />
-            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1059,77 +1170,227 @@ export default function Portfolio() {
 
       {selectedProject && (
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-4xl w-full p-0 rounded-lg h-[90vh] flex flex-col">
-            <div className="relative w-full flex-grow flex flex-col items-center justify-center group">
-              {/* Background Image */}
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <Image
-                    src={
-                      (selectedProject.images && selectedProject.images[currentImageIndex]) ||
-                      selectedProject.image ||
-                      "/placeholder.svg"
-                    }
-                    alt={`${selectedProject.title} image ${currentImageIndex + 1}`}
-                    fill
-                    sizes="90vw" // It will take up to 90% of the viewport width in the modal
-                    className="object-contain" // Ensures the entire image is visible
-                    onError={handleImageError}
-                  />
-                </motion.div>
-              </AnimatePresence>
-              {/* Semi-transparent Overlay and Content */}
-              <div className="absolute inset-0 bg-black/70 md:bg-black/0 md:group-hover:bg-black/70 flex flex-col justify-end p-6 md:p-10 text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
-                <DialogHeader className="mb-2">
-                  <DialogTitle className="text-2xl md:text-3xl font-bold text-white">
-                    {selectedProject.title}
-                  </DialogTitle>
-                </DialogHeader>
-                <p className="text-sm md:text-base mb-4 overflow-y-auto custom-scrollbar">
-                  {selectedProject.detailedDescription || selectedProject.description}
-                </p>
+          <DialogContent className="max-w-7xl w-full p-0 rounded-3xl h-[95vh] flex flex-col overflow-hidden bg-background border-0 shadow-2xl">
+            <div className="relative w-full h-full flex flex-col">
+              {/* Header Bar */}
+              <div className="relative z-20 flex items-center justify-between p-6 bg-background/95 backdrop-blur-md border-b border-border/50">
+                {/* Category Badge */}
+                <Badge className="bg-primary-orange/90 text-white backdrop-blur-md border-0 shadow-lg font-semibold px-4 py-2 text-sm">
+                  {selectedProject.category}
+                </Badge>
+
                 {/* Navigation Controls for Multi-Image Projects */}
                 {selectedProject.images && selectedProject.images.length > 1 && (
-                  <div className="flex justify-between items-center mt-4">
+                  <div className="flex items-center space-x-4">
                     <Button
-                      variant="ghost"
-                      size="icon"
-                      className="bg-white/20 hover:bg-white/40 text-white"
+                      variant="outline"
+                      size="sm"
+                      className="bg-background/90 hover:bg-background text-foreground border-border/50 backdrop-blur-md shadow-lg transition-all duration-300 rounded-full"
                       onClick={handlePrevImage}
                       aria-label="Previous image"
                     >
-                      <ArrowLeft className="w-6 h-6" />
+                      <ArrowLeft className="w-4 h-4" />
                     </Button>
-                    <div className="flex space-x-2">
+
+                    {/* Image Indicators */}
+                    <div className="flex space-x-2 bg-background/90 backdrop-blur-md rounded-full px-3 py-1 border border-border/50 shadow-lg">
                       {selectedProject.images.map((_, index) => (
                         <button
                           key={index}
-                          className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                            index === currentImageIndex ? "bg-primary-orange" : "bg-white/50 hover:bg-white"
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            index === currentImageIndex
+                              ? "bg-primary-orange shadow-lg scale-125"
+                              : "bg-muted-foreground/40 hover:bg-muted-foreground/60 hover:scale-110"
                           }`}
                           onClick={() => setCurrentImageIndex(index)}
                           aria-label={`View image ${index + 1}`}
                         />
                       ))}
                     </div>
+
                     <Button
-                      variant="ghost"
-                      size="icon"
-                      className="bg-white/20 hover:bg-white/40 text-white"
+                      variant="outline"
+                      size="sm"
+                      className="bg-background/90 hover:bg-background text-foreground border-border/50 backdrop-blur-md shadow-lg transition-all duration-300 rounded-full"
                       onClick={handleNextImage}
                       aria-label="Next image"
                     >
-                      <ArrowRight className="w-6 h-6" />
+                      <ArrowRight className="w-4 h-4" />
                     </Button>
                   </div>
                 )}
+
+                {/* Close Button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="bg-background/90 hover:bg-background text-foreground backdrop-blur-md rounded-full shadow-lg border border-border/50 transition-all duration-300 hover:scale-110"
+                  onClick={() => setSelectedProject(null)}
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
+
+              {/* Main Content Area */}
+              <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+                {/* Image Section */}
+                <div className="flex-1 relative bg-muted/20 flex items-center justify-center p-6">
+                  <AnimatePresence initial={false} mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="relative w-full h-full flex items-center justify-center"
+                    >
+                      <Image
+                        src={
+                          (selectedProject.images && selectedProject.images[currentImageIndex]) ||
+                          selectedProject.image ||
+                          "/placeholder.svg"
+                        }
+                        alt={`${selectedProject.title} image ${currentImageIndex + 1}`}
+                        width={1200}
+                        height={800}
+                        className="max-w-full max-h-full object-contain rounded-2xl shadow-lg"
+                        onError={handleImageError}
+                        sizes="60vw"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Keyboard Navigation Hint */}
+                  {selectedProject.images && selectedProject.images.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-background/90 backdrop-blur-md rounded-full px-4 py-2 border border-border/50 shadow-lg">
+                        <p className="text-xs text-muted-foreground font-medium">Use ← → arrow keys to navigate</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content Panel */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="w-full lg:w-96 xl:w-[28rem] bg-card/95 backdrop-blur-md border-l border-border/50 flex flex-col"
+                >
+                  {/* Scrollable Content */}
+                  <div className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+                    {/* Title Section */}
+                    <div className="space-y-4">
+                      <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                        className="text-2xl xl:text-3xl font-bold text-foreground leading-tight tracking-tight"
+                      >
+                        {selectedProject.title}
+                      </motion.h2>
+
+                      {/* Tags */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.5 }}
+                        className="flex flex-wrap gap-2"
+                      >
+                        {selectedProject.tags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="outline"
+                            className="bg-muted/80 text-muted-foreground border-border/50 backdrop-blur-sm hover:bg-primary-orange/10 hover:border-primary-orange/30 transition-all duration-300 text-xs font-medium px-3 py-1"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </motion.div>
+                    </div>
+
+                    {/* Description */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                      className="space-y-4"
+                    >
+                      <h3 className="text-lg font-semibold text-foreground">About This Project</h3>
+                      <div className="bg-muted/50 backdrop-blur-sm rounded-xl p-6 border border-border/30">
+                        <p className="text-sm xl:text-base text-foreground leading-relaxed">
+                          {selectedProject.detailedDescription || selectedProject.description}
+                        </p>
+                      </div>
+                    </motion.div>
+
+                    {/* Project Details */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.5 }}
+                      className="space-y-4"
+                    >
+                      <h3 className="text-lg font-semibold text-foreground">Project Details</h3>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center py-2 border-b border-border/30">
+                          <span className="text-sm font-medium text-muted-foreground">Category</span>
+                          <span className="text-sm font-semibold text-foreground">{selectedProject.category}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-border/30">
+                          <span className="text-sm font-medium text-muted-foreground">Tags</span>
+                          <span className="text-sm font-semibold text-foreground">
+                            {selectedProject.tags.length} tags
+                          </span>
+                        </div>
+                        {selectedProject.images && (
+                          <div className="flex justify-between items-center py-2 border-b border-border/30">
+                            <span className="text-sm font-medium text-muted-foreground">Images</span>
+                            <span className="text-sm font-semibold text-foreground">
+                              {currentImageIndex + 1} of {selectedProject.images.length}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.5 }}
+                    className="p-6 border-t border-border/50 bg-background/50 backdrop-blur-sm space-y-3"
+                  >
+                    {(selectedProject.embedUrl || selectedProject.websiteUrl) && (
+                      <Button
+                        size="lg"
+                        className="w-full bg-primary-orange hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] rounded-xl font-semibold"
+                        onClick={() => {
+                          if (selectedProject.embedUrl) window.open(selectedProject.embedUrl, "_blank")
+                          else if (selectedProject.websiteUrl) window.open(selectedProject.websiteUrl, "_blank")
+                        }}
+                      >
+                        <ArrowRight className="w-5 h-5 mr-2" />
+                        {selectedProject.websiteUrl ? "Visit Website" : "View Project"}
+                      </Button>
+                    )}
+
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full bg-background/90 hover:bg-background text-foreground border-border/50 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] rounded-xl font-semibold"
+                      onClick={() => {
+                        setSelectedProject(null)
+                        scrollTo("contact")
+                      }}
+                    >
+                      <Mail className="w-5 h-5 mr-2" />
+                      Get In Touch
+                    </Button>
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
           </DialogContent>
