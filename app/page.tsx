@@ -185,6 +185,28 @@ export default function Portfolio() {
         "This lettering project explores the intersection of Colombian musical heritage and contemporary typography design. Created with traditional brush techniques and modern color theory, the series includes six color variations that each evoke different emotional responses while maintaining the energetic spirit of Cumbia music.",
     },
     {
+      id: 8,
+      title: "Ag & Food Lab Website",
+      category: "Web Design",
+      description:
+        "Complete website design and development for The Ag & Food Lab, a community-driven nonprofit supporting small-scale farmers and local food entrepreneurs with access to land, infrastructure, and wrap-around services in Colorado.",
+      image: "/agfoodlab-website.jpeg",
+      tags: ["Web Design", "Non-Profit", "Sustainable Agriculture", "UX/UI", "2025"],
+      websiteUrl: "https://www.agfoodlab.org",
+      detailedDescription:
+        "This website project for The Ag & Food Lab highlights the organization's mission to build a sustainable future for local food systems. The design connects farmers and food entrepreneurs to resources through three core programs: The Farm (35 acres in Bennett, CO), The Hub (a warehouse in Denver), and The Market (distributing fresh food across Metro Denver). The site features community testimonials, volunteer and donation pathways, and an accessible FAQ section. The design emphasizes earthy, organic tones with a clean modern layout that reflects the organization's commitment to equity, resilience, and community-centered food systems.",
+    },
+    {
+      id: 9,
+      title: "Ag & Food Lab Annual Report 2025",
+      category: "Publication Design",
+      description:
+        "2025 Annual Report design for The Ag & Food Lab, showcasing the organization's impact on sustainable agriculture, community food access, and support for small-scale farmers across Colorado.",
+      image: "/agfoodlab-annual-report-2025.jpeg",
+      tags: ["Annual Report", "Non-Profit Design", "Publication Design", "Sustainable Agriculture", "2025"],
+      embedUrl: "https://irp.cdn-website.com/e3282f66/files/uploaded/Annual+Report+2025.pdf",
+    },
+    {
       id: 7,
       title: "Corn Festival Branding",
       category: "Event Branding",
