@@ -112,14 +112,26 @@ export default function Portfolio() {
 
   const projects = [
     {
-      id: 1,
-      title: "Brand Identity Design",
-      category: "Branding",
+      id: 9,
+      title: "Ag & Food Lab Annual Report 2025",
+      category: "Publication Design",
       description:
-        "Complete brand identity system for Food Security Network (FSN) featuring an interconnected icon system representing various aspects of food security.",
-      image: "/fsn-logo-mockup.jpeg",
-      tags: ["Logo Design", "Brand Guidelines", "Food Security", "Non-Profit Branding", "Identity Systems"],
-      embedUrl: "https://online.fliphtml5.com/zcsyb/ommr/",
+        "2025 Annual Report design for The Ag & Food Lab, showcasing the organization's impact on sustainable agriculture, community food access, and support for small-scale farmers across Colorado.",
+      image: "/agfoodlab-annual-report-2025.jpeg",
+      tags: ["Annual Report", "Non-Profit Design", "Publication Design", "Sustainable Agriculture", "2025"],
+      embedUrl: "https://irp.cdn-website.com/e3282f66/files/uploaded/Annual+Report+2025.pdf",
+    },
+    {
+      id: 8,
+      title: "Ag & Food Lab Website",
+      category: "Web Design",
+      description:
+        "Complete website design and development for The Ag & Food Lab, a community-driven nonprofit supporting small-scale farmers and local food entrepreneurs with access to land, infrastructure, and wrap-around services in Colorado.",
+      image: "/agfoodlab-website.jpeg",
+      tags: ["Web Design", "Non-Profit", "Sustainable Agriculture", "UX/UI", "2025"],
+      websiteUrl: "https://www.agfoodlab.org",
+      detailedDescription:
+        "This website project for The Ag & Food Lab highlights the organization's mission to build a sustainable future for local food systems. The design connects farmers and food entrepreneurs to resources through three core programs: The Farm (35 acres in Bennett, CO), The Hub (a warehouse in Denver), and The Market (distributing fresh food across Metro Denver). The site features community testimonials, volunteer and donation pathways, and an accessible FAQ section. The design emphasizes earthy, organic tones with a clean modern layout that reflects the organization's commitment to equity, resilience, and community-centered food systems.",
     },
     {
       id: 2,
@@ -132,38 +144,14 @@ export default function Portfolio() {
       embedUrl: "https://online.fliphtml5.com/zcsyb/mdtu/",
     },
     {
-      id: 3,
-      title: "Informe no financiero Colpatria 2018",
-      category: "Publication Design",
+      id: 1,
+      title: "Brand Identity Design",
+      category: "Branding",
       description:
-        "Corporate non-financial report design for Colpatria featuring clean typography and strategic use of the brand's red color palette.",
-      image: "/colpatria-informe-cover.png",
-      tags: ["Corporate Design", "Non-Financial Report", "Spanish Language", "Brand Consistency", "Publication Design"],
-      embedUrl: "https://online.fliphtml5.com/zcsyb/meze/",
-    },
-    {
-      id: 4,
-      title: "Cultural Event Poster Series",
-      category: "Print Design",
-      description:
-        "Comprehensive poster design series for cultural events and theatrical productions, featuring consistent branding with mandala motifs.",
-      image: "/abrazo-latino-poster.jpeg",
-      images: ["/abrazo-latino-poster.jpeg", "/chai-chat-poster.jpeg", "/cage-poster.jpeg", "/bibi-poster.jpeg"],
-      tags: ["Poster Design", "Cultural Design", "Event Marketing", "Illustration"],
-      detailedDescription:
-        "This poster series represents a comprehensive approach to cultural event marketing, featuring four distinct designs that maintain visual consistency while celebrating diverse cultural expressions. Each poster incorporates traditional mandala motifs with contemporary design elements, creating a bridge between cultural heritage and modern aesthetic appeal.",
-    },
-    {
-      id: 5,
-      title: "HAFNCO Website Design",
-      category: "Web Design",
-      description:
-        "Complete website design and development for Harvest of All First Nations, featuring cultural sensitivity, modern UX, and community-focused storytelling.",
-      image: "/hafnco-website-homepage.jpeg",
-      tags: ["Web Design", "Non-Profit", "Cultural Design", "UX/UI"],
-      websiteUrl: "https://www.hafnco.org",
-      detailedDescription:
-        "This website project required deep cultural sensitivity and community collaboration. The design process involved extensive consultation with First Nations community members to ensure authentic representation while delivering a modern, accessible web experience that serves the organization's mission effectively.",
+        "Complete brand identity system for Food Security Network (FSN) featuring an interconnected icon system representing various aspects of food security.",
+      image: "/fsn-logo-mockup.jpeg",
+      tags: ["Logo Design", "Brand Guidelines", "Food Security", "Non-Profit Branding", "Identity Systems"],
+      embedUrl: "https://online.fliphtml5.com/zcsyb/ommr/",
     },
     {
       id: 6,
@@ -183,28 +171,6 @@ export default function Portfolio() {
       tags: ["Hand Lettering", "Typography", "Colombian Culture", "Brush Script", "Cultural Design"],
       detailedDescription:
         "This lettering project explores the intersection of Colombian musical heritage and contemporary typography design. Created with traditional brush techniques and modern color theory, the series includes six color variations that each evoke different emotional responses while maintaining the energetic spirit of Cumbia music.",
-    },
-    {
-      id: 8,
-      title: "Ag & Food Lab Website",
-      category: "Web Design",
-      description:
-        "Complete website design and development for The Ag & Food Lab, a community-driven nonprofit supporting small-scale farmers and local food entrepreneurs with access to land, infrastructure, and wrap-around services in Colorado.",
-      image: "/agfoodlab-website.jpeg",
-      tags: ["Web Design", "Non-Profit", "Sustainable Agriculture", "UX/UI", "2025"],
-      websiteUrl: "https://www.agfoodlab.org",
-      detailedDescription:
-        "This website project for The Ag & Food Lab highlights the organization's mission to build a sustainable future for local food systems. The design connects farmers and food entrepreneurs to resources through three core programs: The Farm (35 acres in Bennett, CO), The Hub (a warehouse in Denver), and The Market (distributing fresh food across Metro Denver). The site features community testimonials, volunteer and donation pathways, and an accessible FAQ section. The design emphasizes earthy, organic tones with a clean modern layout that reflects the organization's commitment to equity, resilience, and community-centered food systems.",
-    },
-    {
-      id: 9,
-      title: "Ag & Food Lab Annual Report 2025",
-      category: "Publication Design",
-      description:
-        "2025 Annual Report design for The Ag & Food Lab, showcasing the organization's impact on sustainable agriculture, community food access, and support for small-scale farmers across Colorado.",
-      image: "/agfoodlab-annual-report-2025.jpeg",
-      tags: ["Annual Report", "Non-Profit Design", "Publication Design", "Sustainable Agriculture", "2025"],
-      embedUrl: "https://irp.cdn-website.com/e3282f66/files/uploaded/Annual+Report+2025.pdf",
     },
     {
       id: 7,
@@ -241,6 +207,40 @@ export default function Portfolio() {
       tags: ["Event Design", "Festival Branding", "Wayfinding", "Signage", "Cultural Design"],
       detailedDescription:
         "This comprehensive festival branding project celebrates Indigenous agricultural heritage through respectful and authentic visual design. The project encompassed all visual touchpoints for the annual Corn Festival, creating a complete brand ecosystem that includes promotional materials, digital campaigns, and operational signage. The main event poster features traditional Native American imagery and cultural elements, complemented by a 'Save the Date' announcement with ceremonial regalia photography and a detailed festival map with complete wayfinding system. The social media campaign featured individual headliner spotlights for Jackie Bird & Sons, Melissa Ivey & The Future Ancestors, Mono Verde Collective, and Stella Standingbear, each with both portrait-style announcements and detailed biographical posts. The comprehensive signage system includes regulatory signs (No Smoking, No Weapons, No Drugs/Alcohol, No Pets), operational signs (Waiver Requirements, Photography Notices), and directional wayfinding (Native Food Court, Red Barn, Kids Area). The design approach honored Indigenous culture while creating clear, functional materials that maintained brand consistency across all platforms and applications. The warm earth-tone color palette, traditional corn motifs, and consistent typography created a cohesive brand identity that respected cultural significance while ensuring accessibility, safety, and engagement across all festival touchpoints.",
+    },
+    {
+      id: 4,
+      title: "Cultural Event Poster Series",
+      category: "Print Design",
+      description:
+        "Comprehensive poster design series for cultural events and theatrical productions, featuring consistent branding with mandala motifs.",
+      image: "/abrazo-latino-poster.jpeg",
+      images: ["/abrazo-latino-poster.jpeg", "/chai-chat-poster.jpeg", "/cage-poster.jpeg", "/bibi-poster.jpeg"],
+      tags: ["Poster Design", "Cultural Design", "Event Marketing", "Illustration"],
+      detailedDescription:
+        "This poster series represents a comprehensive approach to cultural event marketing, featuring four distinct designs that maintain visual consistency while celebrating diverse cultural expressions. Each poster incorporates traditional mandala motifs with contemporary design elements, creating a bridge between cultural heritage and modern aesthetic appeal.",
+    },
+    {
+      id: 5,
+      title: "HAFNCO Website Design",
+      category: "Web Design",
+      description:
+        "Complete website design and development for Harvest of All First Nations, featuring cultural sensitivity, modern UX, and community-focused storytelling.",
+      image: "/hafnco-website-homepage.jpeg",
+      tags: ["Web Design", "Non-Profit", "Cultural Design", "UX/UI"],
+      websiteUrl: "https://www.hafnco.org",
+      detailedDescription:
+        "This website project required deep cultural sensitivity and community collaboration. The design process involved extensive consultation with First Nations community members to ensure authentic representation while delivering a modern, accessible web experience that serves the organization's mission effectively.",
+    },
+    {
+      id: 3,
+      title: "Informe no financiero Colpatria 2018",
+      category: "Publication Design",
+      description:
+        "Corporate non-financial report design for Colpatria featuring clean typography and strategic use of the brand's red color palette.",
+      image: "/colpatria-informe-cover.png",
+      tags: ["Corporate Design", "Non-Financial Report", "Spanish Language", "Brand Consistency", "Publication Design"],
+      embedUrl: "https://online.fliphtml5.com/zcsyb/meze/",
     },
   ]
 
